@@ -1,0 +1,356 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: rgb(248, 248, 248);
+}
+
+.menu-container{
+    position: absolute;
+    width: 100vw;
+}
+
+
+.menu-container .logo-link{
+    color: transparent;
+    text-decoration: none;
+}
+
+.menu-container .menu-logo{
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    background: url("./images/logoo.svg");
+    background-size: cover;
+    word-break: break-all;
+    color: transparent;
+    -webkit-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.15s both;
+    animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.15s both;
+    -moz-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.15s both;
+    -o-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2.15s both;
+}
+
+
+.menu-container .menu-options{
+    display: flex;
+    position: relative;
+    list-style: none;
+    flex-direction: row;
+    justify-content:right;
+}
+
+.menu-container .menu-options li{
+    list-style: none;
+    padding: 0 7%;
+}
+
+.menu-container .menu-options a{
+    position:static;
+    text-decoration: none;
+    opacity: 0.75;
+    font-family: 'DM Serif Display', serif;
+    font-weight:lighter;
+    font-size: 1.2rem;
+    cursor: pointer;
+    -webkit-text-stroke: 0.1px black;
+    -webkit-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
+    animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
+    -moz-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
+    -o-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
+}
+
+.menu-container .menu-options .Galeria::after,
+.menu-container .menu-options .Contacto::after,
+.menu-container .menu-options .Cursos::after{
+    position: absolute;
+    content: "";
+    height: 1px;
+    bottom: 2px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width: 8.4%;
+    background: transparent;
+    transition: 0.5s ease-out;
+}
+
+.menu-container .menu-options .Galeria:hover:after{
+    background:rgb(250, 244, 244);
+    left: 18%;
+}
+
+.menu-container .menu-options .Cursos:hover:after{
+    background:rgb(218, 205, 205);
+    left: 49.5%;
+}
+
+.menu-container .menu-options .Contacto:hover:after{
+    background:rgb(218, 205, 205);
+    width: 9%;
+    left: 82%;
+}
+
+.bg-container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.brandName{
+    
+    position: absolute;
+    left: 35%;
+    top: 40%;
+    color: rgb(22, 14, 14);
+    font-size: 6rem;
+    letter-spacing: 0.6rem;
+    cursor: default;
+    animation: fade-in-bck 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
+    -webkit-animation: fade-in-bck 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
+}
+
+.background-1, .background-2{
+    padding: 0%;
+    margin: 0%;
+    height: 100hv;
+    flex-grow: 1;
+    background: scroll url("./images/main.jpg") center 60%/cover;
+    opacity: 0;
+    z-index: -1;
+}
+
+
+@media screen and (min-width: 844px){
+    .background-2{
+        background-size: 200%;
+        animation-iteration-count: 0;
+        animation: bg-2-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+        -moz-animation: bg-2-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+        -webkit-animation: bg-2-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+    }
+
+    .background-1{
+        background-size: 200%;
+        animation-iteration-count: 0;
+        animation: bg-1-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+        -moz-animation: bg-1-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+        -webkit-animation: bg-1-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+    }
+    
+
+    .menu-container .menu-options .Galeria:hover:after{
+        background:rgb(250, 244, 244);
+        width: 4.7%;
+        left: 10%;
+    }
+    
+    .menu-container .menu-options .Cursos:hover:after{
+        background:rgb(218, 205, 205);
+        width: 4.2%;
+        left: 45.1%;
+    }
+    
+    .menu-container .menu-options .Contacto:hover:after{
+        background:rgb(218, 205, 205);
+        width: 5.1%;
+        left: 81.4%;
+    }
+
+    @keyframes bg-1-fs{
+        0%{
+        
+            background-position: left 0% top 0%;
+            opacity: 0;
+        }
+    
+        50%{
+        
+            background-position: left 0% top 30%;
+            opacity: 0.2;
+        }
+    
+        100%{
+        
+            background-position: left 0% top 60%;
+            opacity: 0.7;
+        }
+    
+    }
+
+    @keyframes bg-2-fs{
+        0%{
+        
+            background-position: right 0% top 120%;
+            opacity: 0;
+        }
+    
+        50%{
+        
+            background-position: right 0% top 90%;
+            opacity: 0.2;
+        }
+    
+        100%{
+        
+            background-position: right 0% top 60%;
+            opacity: 0.8;
+        }
+    
+    }
+
+}
+
+@media screen and (max-width: 844px){
+    .brandName{
+        left: 20.5%;
+    }
+
+    .menu-container .menu-options li{
+        list-style: none;
+        padding: 0 4%;
+        
+    }
+
+    .background-1{
+        animation: bg-1 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+    -moz-animation: bg-1 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+    -webkit-animation: bg-1 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+    }
+    
+    .background-2{
+        animation: bg-2 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+    -moz-animation: bg-2 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+    -webkit-animation: bg-2 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+    }
+
+    @keyframes bg-1{
+        0%{
+        
+            background-position: left 0% top 0%;
+            opacity: 0;
+        }
+    
+        50%{
+        
+            background-position:left 30% top 0%;
+            opacity: 0.2;
+        }
+    
+        100%{
+        
+            background-position: left 25.5% top 0%;
+            opacity: 0.7;
+        }
+    
+    }
+    
+    @keyframes bg-2{
+        0%{
+            background-position: right 0% top 0%;
+            opacity: 0;
+        }
+    
+        50%{
+            background-position:right 30% top 0%;
+            opacity: 0.2;
+        }
+    
+        100%{
+            background-position: right 25.5% top 0%;
+            opacity: 0.8;
+        }
+    
+    }
+
+}
+
+
+
+
+
+@-webkit-keyframes fade-in-bck {
+0% {
+    -webkit-transform: perspective(200px) translateZ(80px);
+            transform: perspective(200px) translateZ(80px);
+            -moz-transform: perspective(200px) translateZ(80px);
+
+    opacity: 0;
+}
+100% {
+    -webkit-transform: perspective(100px) translateZ(0);
+            transform:perspective(100px) translateZ(0);
+            -moz-transform: perspective(100px) translateZ(0px);
+    opacity: 0.75;
+}
+}
+@keyframes fade-in-bck {
+0% {
+    -webkit-transform: perspective(200px) translateZ(80px);
+            transform: perspective(200px) translateZ(80px);
+            -moz-transform: perspective(200px) (80px);
+            
+
+    opacity: 0;
+}
+100% {
+    -webkit-transform: perspective(100px) translateZ(0);
+            transform:  perspective(100px) translateZ(0);
+            -moz-transform: perspective(100px) translateZ(0px);
+    opacity: 0.75;
+}
+}
+
+@-moz-keyframes fade-in-bck{
+    0% {
+        -webkit-transform: perspective(200px) translateZ(80px);
+                transform: perspective(200px) translateZ(80px);
+                -moz-transform:  perspective(200px) translateZ(80px);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: perspective(100px) translateZ(0);
+                transform: perspective(100px) translateZ(0);
+                -moz-transform: perspective(100px) translateZ(0px);
+        opacity: 0.75;
+    }
+}
+
+
+@keyframes navElements {
+    0% {
+        -webkit-transform: perspective(200px) translateZ(80px);
+                transform: perspective(200px) translateZ(80px);
+                -moz-transform: perspective(200px) (80px);
+        opacity: 0;
+        color: white;
+    }
+    100% {
+        -webkit-transform: perspective(100px) translateZ(0);
+                transform:  perspective(100px) translateZ(0);
+                -moz-transform: perspective(100px) translateZ(0px);
+        opacity: 0.75;
+        color: rgb(241, 235, 235);
+    }
+    }
+
+/* Header completed  */
+
+.mini-gallery{
+    height: 110%;
+    width: 100%;
+}
+
+.bg-video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: 0.8;
+}
+
+.slogan{
+
+}
