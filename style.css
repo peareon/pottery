@@ -1,3 +1,20 @@
+/*JS Classes*/
+
+
+.reveal{
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 2s all ease;
+  }
+  .reveal.active{
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+
+
+/* Header CSS */
 body{
     padding: 0;
     margin: 0;
@@ -7,6 +24,8 @@ body{
 .menu-container{
     position: absolute;
     width: 100vw;
+    display: flex;
+    justify-content: space-between;
 }
 
 
@@ -16,7 +35,6 @@ body{
 }
 
 .menu-container .menu-logo{
-    position: absolute;
     height: 50px;
     width: 50px;
     background: url("./images/logoo.svg");
@@ -36,20 +54,22 @@ body{
     list-style: none;
     flex-direction: row;
     justify-content:right;
+
 }
 
 .menu-container .menu-options li{
     list-style: none;
-    padding: 0 7%;
+    padding: 0 30%;
 }
 
 .menu-container .menu-options a{
-    position:static;
+    position:relative;
     text-decoration: none;
     opacity: 0.75;
     font-family: 'DM Serif Display', serif;
     font-weight:lighter;
     font-size: 1.2rem;
+    letter-spacing: 0.1rem;
     cursor: pointer;
     -webkit-text-stroke: 0.1px black;
     -webkit-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
@@ -61,32 +81,36 @@ body{
 .menu-container .menu-options .Galeria::after,
 .menu-container .menu-options .Contacto::after,
 .menu-container .menu-options .Cursos::after{
-    position: absolute;
     content: "";
-    height: 1px;
+    position: absolute;
+    height: 2px;
     bottom: 2px;
     margin: 0 auto;
     left: 0;
     right: 0;
-    width: 8.4%;
+    width: 100%;
+    transform-origin: 0;
+    transform: scaleX(0);
     background: transparent;
     transition: 0.5s ease-out;
 }
 
 .menu-container .menu-options .Galeria:hover:after{
     background:rgb(250, 244, 244);
-    left: 18%;
+    transform: scaleX(1);
+
 }
 
 .menu-container .menu-options .Cursos:hover:after{
     background:rgb(218, 205, 205);
-    left: 49.5%;
+    transform: scaleX(1);
+
 }
 
 .menu-container .menu-options .Contacto:hover:after{
     background:rgb(218, 205, 205);
-    width: 9%;
-    left: 82%;
+    transform: scaleX(1);
+
 }
 
 .bg-container{
@@ -96,10 +120,10 @@ body{
 }
 
 .brandName{
-    
     position: absolute;
-    left: 35%;
-    top: 40%;
+    font-family: 'DM Serif Display', serif;
+    left: 37.7%;
+    top: 42.5%;
     color: rgb(22, 14, 14);
     font-size: 6rem;
     letter-spacing: 0.6rem;
@@ -139,20 +163,20 @@ body{
 
     .menu-container .menu-options .Galeria:hover:after{
         background:rgb(250, 244, 244);
-        width: 4.7%;
-        left: 10%;
+        transform: scaleX(1);
+
     }
     
     .menu-container .menu-options .Cursos:hover:after{
         background:rgb(218, 205, 205);
-        width: 4.2%;
-        left: 45.1%;
+        transform: scaleX(1);
+
     }
     
     .menu-container .menu-options .Contacto:hover:after{
         background:rgb(218, 205, 205);
-        width: 5.1%;
-        left: 81.4%;
+        transform: scaleX(1);
+
     }
 
     @keyframes bg-1-fs{
@@ -334,9 +358,25 @@ body{
 
 /* Header completed  */
 
+.transition {
+	background: #dad6d6;
+	height: 70vh;
+    background: url("./images/bg_animated.svg") no-repeat 40% center;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.transition-text{
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+}
+
+
 .mini-gallery{
     height: 110%;
     width: 100%;
+    
 }
 
 .bg-video{
