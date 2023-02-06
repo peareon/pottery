@@ -1,5 +1,7 @@
 /*JS Classes*/
-
+:root {
+    --bg-translate: 0;
+  }
 
 .reveal{
     position: relative;
@@ -10,6 +12,7 @@
   .reveal.active{
     transform: translateY(0);
     opacity: 1;
+    background-image: url("./images/bg_animated.svg");
   }
 
 
@@ -18,7 +21,11 @@
 body{
     padding: 0;
     margin: 0;
-    background-color: rgb(248, 248, 248);
+    background-color: rgb(236, 230, 230);
+}
+
+header{
+    width: 100vw;
 }
 
 .menu-container{
@@ -59,7 +66,7 @@ body{
 
 .menu-container .menu-options li{
     list-style: none;
-    padding: 0 30%;
+    padding: 0 3em;
 }
 
 .menu-container .menu-options a{
@@ -113,52 +120,106 @@ body{
 
 }
 
+
+.brandName{
+    position: absolute;
+    height: 100px;
+
+    top: 45%;
+    left: 20px;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: rgb(22, 14, 14);
+    font-size: 6rem;
+    letter-spacing: 0.6rem;
+    cursor: default;
+    font-family: 'DM Serif Display', serif;
+    animation: fade-in-bck 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
+    -webkit-animation: fade-in-bck 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
+}
+
 .bg-container{
     height: 100%;
     width: 100%;
     display: flex;
 }
 
-.brandName{
-    position: absolute;
-    font-family: 'DM Serif Display', serif;
-    left: 37.7%;
-    top: 42.5%;
-    color: rgb(22, 14, 14);
-    font-size: 6rem;
-    letter-spacing: 0.6rem;
-    cursor: default;
-    animation: fade-in-bck 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
-    -webkit-animation: fade-in-bck 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
-}
-
 .background-1, .background-2{
     padding: 0%;
     margin: 0%;
-    height: 100hv;
+    
     flex-grow: 1;
-    background: scroll url("./images/main.jpg") center 60%/cover;
+    background: scroll url("./images/main.jpg") center 60% no-repeat;
+    background-size: 200%;
+    
+    
     opacity: 0;
     z-index: -1;
+    
+}
+
+.background-1{
+    animation: bg-1-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+        -moz-animation: bg-1-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+        -webkit-animation: bg-1-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+}
+
+.background-2{
+    animation: bg-2-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+        -moz-animation: bg-2-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+        -webkit-animation: bg-2-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+}
+
+@keyframes bg-1-fs{
+    0%{
+    
+        background-position: left var(--bg-translate) top 0%;
+        opacity: 0;
+    }
+
+    50%{
+    
+        background-position: left var(--bg-translate) top 30%;
+        opacity: 0.2;
+    }
+
+    100%{
+    
+        background-position: left var(--bg-translate) top 60%;
+        opacity: 0.7;
+    }
+
+}
+
+@keyframes bg-2-fs{
+    0%{
+    
+        background-position: right var(--bg-translate) top 120%;
+        opacity: 0;
+    }
+
+    50%{
+    
+        background-position: right var(--bg-translate) top 90%;
+        opacity: 0.2;
+    }
+
+    100%{
+    
+        background-position: right var(--bg-translate) top 60%;
+        opacity: 0.8;
+    }
+
 }
 
 
-@media screen and (min-width: 844px){
-    .background-2{
-        background-size: 200%;
-        animation-iteration-count: 0;
-        animation: bg-2-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
-        -moz-animation: bg-2-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
-        -webkit-animation: bg-2-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
-    }
 
-    .background-1{
-        background-size: 200%;
-        animation-iteration-count: 0;
-        animation: bg-1-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
-        -moz-animation: bg-1-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
-        -webkit-animation: bg-1-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
-    }
+@media screen and (min-width: 1200px){
+
     
 
     .menu-container .menu-options .Galeria:hover:after{
@@ -179,53 +240,18 @@ body{
 
     }
 
-    @keyframes bg-1-fs{
-        0%{
-        
-            background-position: left 0% top 0%;
-            opacity: 0;
-        }
     
-        50%{
-        
-            background-position: left 0% top 30%;
-            opacity: 0.2;
-        }
-    
-        100%{
-        
-            background-position: left 0% top 60%;
-            opacity: 0.7;
-        }
-    
-    }
-
-    @keyframes bg-2-fs{
-        0%{
-        
-            background-position: right 0% top 120%;
-            opacity: 0;
-        }
-    
-        50%{
-        
-            background-position: right 0% top 90%;
-            opacity: 0.2;
-        }
-    
-        100%{
-        
-            background-position: right 0% top 60%;
-            opacity: 0.8;
-        }
-    
-    }
-
 }
 
-@media screen and (max-width: 844px){
+.small-ratio{
+    background-size: cover;
+    
+}
+
+
+/* @media screen and (max-width: 1200px){
     .brandName{
-        left: 20.5%;
+        left:23px;
     }
 
     .menu-container .menu-options li{
@@ -235,6 +261,7 @@ body{
     }
 
     .background-1{
+        
         animation: bg-1 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
     -moz-animation: bg-1 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
     -webkit-animation: bg-1 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
@@ -255,13 +282,13 @@ body{
     
         50%{
         
-            background-position:left 30% top 0%;
+            background-position:left 0 top 0%;
             opacity: 0.2;
         }
     
         100%{
         
-            background-position: left 25.5% top 0%;
+            background-position: left -13.8rem top 0%;
             opacity: 0.7;
         }
     
@@ -274,19 +301,25 @@ body{
         }
     
         50%{
-            background-position:right 30% top 0%;
+            background-position:right 0 top 0%;
             opacity: 0.2;
         }
     
         100%{
-            background-position: right 25.5% top 0%;
+            background-position: right -13.8rem top 0%;
             opacity: 0.8;
         }
     
     }
 
-}
+} */
 
+/* @media screen and (max-width: 850px) and (max-height: 660px) {
+    .background-1, .background-2{
+        background-size: cover;
+        opacity: 1;
+    }
+} */
 
 
 
@@ -359,21 +392,34 @@ body{
 /* Header completed  */
 
 .transition {
-	background: #dad6d6;
 	height: 70vh;
-    background: url("./images/bg_animated.svg") no-repeat 40% center;
+    background: url("") no-repeat 40% center;
+    
+    filter: brightness(0.8) sepia(1) hue-rotate(-160deg) saturate(6);
+    /* filter: brightness(0.3) sepia(1) hue-rotate(-20deg) saturate(3); */
     display: grid;
     align-items: center;
-    justify-items: center;
+    justify-items:baseline;
 }
 
 .transition-text{
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.6rem;
+    font-family: 'Lora', serif;
+    font-size: 4rem;
+    font-weight: 400;
+    padding-left: 25%;
+}
+
+.first-line{
+    margin-bottom: -15%;
+}
+
+.third-line{
+    margin-top: -15%;
 }
 
 
 .mini-gallery{
+    position: relative;
     height: 110%;
     width: 100%;
     
@@ -391,6 +437,7 @@ body{
     opacity: 0.8;
 }
 
-.slogan{
-
+.footer{
+    background-color: #d3bab2;
+    height: 40vh;
 }
