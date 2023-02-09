@@ -45,6 +45,8 @@ function reveal() {
     const elementBottom = reveals[0].getBoundingClientRect().bottom;
     const elementVisible = 40;
     const SVG = document.querySelectorAll(".SVG")[0];
+    console.log("Bottom: ", elementBottom, "Diff: ", windowHeight-elementVisible)
+    console.log("Top: ", elementTop, "Diff: ", windowHeight-elementVisible)
     if (elementTop < windowHeight - elementVisible) {
       if (reveals[i].className.includes("transition") && !SVG.getAttribute("data")){
         SVG.setAttribute("data", "./images/bg_animated.svg")
@@ -56,7 +58,12 @@ function reveal() {
       }
       reveals[i].classList.remove("active");
     }
-    // else if(elementBottom) < windowHeight - elementVisible)
+    if (elementBottom < 0 && SVG.getAttribute("data")){
+      SVG.setAttribute("data", "")
+    }
+    else if(elementBottom > 0 && !SVG.getAttribute("data")){
+      SVG.setAttribute("data", "./images/bg_animated.svg")
+    }
   }
 }
 
