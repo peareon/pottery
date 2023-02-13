@@ -1,28 +1,23 @@
-// window.onwheel = e => {
-//     if(e.deltaY >= 0){
-//       // Scrolling Down with mouse
-//       console.log('Scroll Down');
-//     } else {
-//       // Scrolling Up with mouse
-//       console.log('Scroll Up');
-//     }
-//   }
-
-
-// var bg = document.getElementsByClassName("background-1")[0];
-//   bg.style.backgroundSize = "60px 120px"
-
-
-// const width = window.innerWidth;
-// const height = window.innerHeight;
-// var bg_1 = document.getElementsByClassName("background-1")[0];
-// var bg_2 = document.getElementsByClassName("background-2")[0];
-// if (width/height <= 1.5){
-//   bg_1.classList.add("small-ratio")
-//   bg_2.classList.add("small-ratio")
-// }
-
 let root = document.documentElement;
+
+
+var submit = document.getElementsByClassName("submit")
+
+
+
+function buttonAnimation(event) {
+  event.preventDefault()
+  const wrapper = document.getElementsByClassName( "button-wrapper" )[0];
+    if(!wrapper.className.includes( ".checked" )) {
+          console.log("yes")
+          wrapper.classList.add( "checked" );
+          setTimeout(function(){
+              wrapper.classList.remove( "checked" );
+          }, 8000);
+      }
+};
+
+
 
 function fitContent(){
   const ratio = window.innerWidth/window.innerHeight;
@@ -34,6 +29,7 @@ function fitContent(){
       const adjustmentCurve = (ratio - 1.50308515)/0.03738281
       root.style.setProperty('--bg-translate', adjustmentCurve+"em");
     }
+    
 }
 
 function reveal() {
@@ -45,8 +41,7 @@ function reveal() {
     const elementBottom = reveals[0].getBoundingClientRect().bottom;
     const elementVisible = 40;
     const SVG = document.querySelectorAll(".SVG")[0];
-    console.log("Bottom: ", elementBottom, "Diff: ", windowHeight-elementVisible)
-    console.log("Top: ", elementTop, "Diff: ", windowHeight-elementVisible)
+  
     if (elementTop < windowHeight - elementVisible) {
       if (reveals[i].className.includes("transition") && !SVG.getAttribute("data")){
         SVG.setAttribute("data", "./images/bg_animated.svg")
@@ -67,7 +62,7 @@ function reveal() {
   }
 }
 
-function responsive(event){
+function responsive(){
   const ratio = window.innerWidth/window.innerHeight;
   var bg_1 = document.getElementsByClassName("background-1")[0];
   var bg_2 = document.getElementsByClassName("background-2")[0];
@@ -76,13 +71,22 @@ function responsive(event){
     bg_1.classList.add("small-ratio")
     bg_2.classList.add("small-ratio")
     const adjustmentCurve = (ratio - 1.50308515)/0.03738281
-    // alert(ratio)
     root.style.setProperty('--bg-translate', adjustmentCurve+"em");
   }
   else{
-    root.style.setProperty('--bg-translate', 0+"em")
     bg_1.classList.remove("small-ratio")
     bg_2.classList.remove("small-ratio")
+    root.style.setProperty('--bg-translate', 0+"em")
+  }
+}
+
+function responsiveMenu(){
+  const menu = document.getElementById("topnav");
+  console.log(menu)
+  if (menu.className === "div-menu-options") {
+    menu.className += " responsive";
+  } else {
+    menu.className = "div-menu-options";
   }
 }
 
@@ -90,6 +94,8 @@ function responsive(event){
 window.addEventListener("DOMContentLoaded", fitContent);
 window.addEventListener("scroll", reveal);
 window.addEventListener("resize", responsive);
+
+
 
 // var bg = document.getElementsByClassName("background-1")[0];
 //   bg.style.backgroundSize = "60px 120px"
