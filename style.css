@@ -131,9 +131,10 @@ header{
 .brandName{
     position: absolute;
     height: 100px;
+    max-width: 70%;
 
     top: 45%;
-    left: 20px;
+    margin:0 auto;
     right: 0;
     bottom: 0;
     display: flex;
@@ -347,6 +348,7 @@ header{
 .hook{
     position: relative;
     top: 25%;
+    padding-bottom: 15px;
     width: 50%;
     max-height: 80px;
     margin: 0 auto;
@@ -417,7 +419,7 @@ header{
     display: block;
     transition: 0.2s;
     font-size: 1rem;
-    color: #11998e;
+    color: #d29b96;
     font-weight:700;    
   }
 
@@ -425,24 +427,13 @@ header{
   padding-bottom: 6px;  
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, #11998e,#38ef7d);
+  border-image: linear-gradient(to right, #d29b96 30%,#925854);
   border-image-slice: 1;
 }
 /* reset input */
 .form__field:required, .form__field:invalid{
   box-shadow:none;
 }
-/* demo */
-/* body {
-  font-family: 'Poppins', sans-serif; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-size: 1.5rem;
-  background-color:#222222;
-} */
 
 /*BOTON*/
 
@@ -472,7 +463,7 @@ header{
     z-index:2;
     width:135px;
     height:50px; /*Alto del boton*/
-    background: linear-gradient(to right, #ffb369 0%,#ff4272 100%); 
+    background: linear-gradient(to right, #C1B8B9 0%,#BBA7A0 100%); 
     display:block;
     border-radius:200px;
     text-align:center;
@@ -486,29 +477,14 @@ header{
     background: transparent;
   }
   
-  .submit:before {
-    content:"";
-    z-index:-2;
-    width:100%;
-    height:100%;
-    background: linear-gradient(to right, #ffb369 0%,#ff4272 100%); 
-    display:block;
-    border-radius:200px;
-    position:absolute;
-    left:0;
-    top:0;
-    opacity:0.8;
-    transform:scale(0.9) translateY(15px); /* Quitar blur */
-    filter:blur(20px);
-    transition:all 0.2s ease;
-  }
+
   
   .submit:after {
     content:"";
     z-index:-4;
     width:100%;
     height:100%;
-    background: linear-gradient(to right, #ffb369 0%,#ff4272 100%); 
+    background: linear-gradient(to right, #C1B8B9 0%,#BBA7A0 100%); 
     display:block;
     border-radius:200px;
     position:absolute;
@@ -529,10 +505,7 @@ header{
     transition:all 0s;
   }
   
-  .checked .submit:before {
-    top:0px;
-    opacity:0;
-  }
+
   
   .checked .submit:after {
       animation: submit-after-anim 0.5s 4.4s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -544,16 +517,16 @@ header{
   }
   
   .yellow {
-    background-color: #ffb369;
+    background-color: #968277;
   }
   
   .pink {
-    background-color: #ff4272;
+    background-color: #846D5D;
     }
   
   .orange {
     top: -10px;
-    background-color: #ff7b6e;
+    background-color: #523E37;
     transform:scale(0.2) rotate(30deg) translate(0px);
   }
   
@@ -591,7 +564,7 @@ header{
   .checked .submit {
     width:95px;
     color:rgba(255,255,255,0);
-    background: linear-gradient(to right, #ff7b6e 0%,#ff7b6e 100%);
+    background: linear-gradient(to right, #C1B8B9 0%,#BBA7A0 100%); 
     animation: submit-anim 4s  cubic-bezier(0.39, 0.575, 0.565, 1);
     }
   
@@ -645,13 +618,13 @@ header{
   
   @keyframes loader-anim-orange {
     0%,70% {transform:scale(0.2) rotate(30deg) translate(0px); }
-    85% {transform:scale(0.2) rotate(30deg) translate(-1100px);}
+    85% {transform:scale(0.2) rotate(30deg) translate(-700px);}
     100% {transform:scale(0.2) rotate(30deg) translate(0px); }
   }
   
   @keyframes wrapper-loader-anim {
       0% {transform:scale(0) translateY(0px) }
-      10% {transform:scale(1) translateY(20px)}
+      10% {transform:scale(1) translateY(-20px)}
     50% {transform:scale(1.2) translateY(-30px) }
     90% {transform:scale(1) translateY(-10px)}
     100% {transform:scale(0) translateY(0px)}
@@ -664,7 +637,7 @@ header{
   
   @keyframes submit-anim {
       0% {transform:scale(1) }
-        5%, 95% {transform:scale(0.7) }
+        5%, 95% {transform:scale(0.9) }
     100% {transform:scale(1)}
   }
   
@@ -831,6 +804,12 @@ header{
         width: 68%;
     }
 
+    .hook{
+        top: 31%;
+        padding-bottom: 0;
+        font-size: 3rem;
+        font-style: italic;
+    }
     
     .transition-text{
         font-size: 2.5rem;
@@ -942,6 +921,56 @@ header{
     .SVG{
         margin-left: -4em;
     }
+
+    .hook{
+        top: 28%;
+        padding-bottom: 0;
+        font-size: 1.2rem;
+        font-style: italic;
+    }
+
+    .form__group {
+        top: 36%;
+        width: 50%;
+    }
+
+
+    .form__field {
+        font-size: 0.8rem;
+    }
+
+    .form__field:placeholder-shown ~ .form__label{
+        font-size: 1rem;
+    }
+
+
+    #button-wrapper {
+        top: calc(69% - 60px);
+        font-size:12px;
+        letter-spacing:2px;
+    }
+
+    .submit {
+        width:75px;
+        height:30px; /*Alto del boton*/
+        line-height:260%;    /*Altura de text*/
+    }
+
+    .loader {
+        width:95px;
+        height:95px;
+    }
+
+    .check-wrapper {
+        width:75px;
+        height:30px;
+    }
+      
+    .check-wrapper svg {
+        margin-top: -4px; /*Altura del svg check*/
+        margin-left: 4px;
+        transform: scale(0.3);
+      }
 
     .footer{
         background-size: cover;
