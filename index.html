@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANRAMO Cerámica</title>
+    <meta name="description" content="Piezas de cerámica dieñadas a la medida">
     <link rel="icon" href="./images/logoo.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,8 +15,8 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script src="app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="app.js"></script>
 </head>
 <header>
     <div class="menu-container">
@@ -26,10 +27,10 @@
         </div>
         
         <div class="div-menu-options" id="topnav">
-                <a href="" class="Galeria">COLECCIONES</a>
-                <a href="" class="Cursos">CURSOS</a>
-                <a href="" class="Contacto">CONTACTO</a>
-                <a href="javascript:void(0);" class="icon-menu" onclick="responsiveMenu()"><i class="fa fa-bars"></i></a>
+                <button class="Galeria">COLECCIONES</button>
+                <button class="Cursos">CURSOS</button>
+                <button class="Contacto">CONTACTO</button>
+                <button class="icon-menu" onclick="responsiveMenu()"><i class="fa fa-bars"></i></button>
         </div>
         
     </div>
@@ -73,7 +74,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">  <defs>    <filter id="goo">      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />      <feBlend in="SourceGraphic" in2="goo" />    </filter>  </defs></svg>
         </div>
 
-        <video class="bg-video" autoplay loop muted poster="">
+        <video class="bg-video" autoplay loop muted poster="" playsinline>
             <source src="./images/pottery.mp4" type="video/mp4">
         </video>
     </div>

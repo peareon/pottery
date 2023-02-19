@@ -26,7 +26,9 @@ body{
 }
 
 header{
-    width: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
 }
 
 .menu-container{
@@ -44,9 +46,9 @@ header{
 
 
 .menu-container .menu-logo{
-    height: 100px;
-    width: 100px;
-    margin-top: 1em;
+    height: 90px;
+    width: 90px;
+    margin-top: 0em;
     background: url("./images/logoo.svg");
     background-size: cover;
     word-break: break-all;
@@ -67,14 +69,20 @@ header{
 
 }
 
+.menu-container .div-menu-options button:not(:last-child){
+    margin: 1em 1.7em;
+    height: 35%;
+}
 
-.menu-container .div-menu-options a{
+.menu-container .div-menu-options button{
     position:relative;
     text-decoration: none;
+    background: transparent;
+    border: none;
     opacity: 0.75;
     font-family: 'DM Serif Display', serif;
     font-weight:lighter;
-    padding: 1em 1.7em;
+    
     font-size: 1.2rem;
     letter-spacing: 0.1rem;
     cursor: pointer;
@@ -90,11 +98,11 @@ header{
     content: "";
     position: absolute;
     height: 2px;
-    bottom: 3.9em;
+    bottom: 0em;
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: 60%;
+    width: 100%;
     transform-origin: 0;
     transform: scaleX(0);
     background: transparent;
@@ -102,7 +110,7 @@ header{
 }
 
 .menu-container .div-menu-options .Galeria::after{
-    width: 67%;
+    width: 100%;
 }
 
 .menu-container .div-menu-options .Galeria:hover:after{
@@ -130,24 +138,23 @@ header{
 
 .brandName{
     position: absolute;
-    height: 100px;
+    height: 10%;
     max-width: 70%;
-
-    top: 45%;
-    margin:0 auto;
-    right: 0;
+    min-width: 70%;
+    top: 0;
     bottom: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+    margin: auto 15%;
+    text-align: center;
+
 
     color: rgb(22, 14, 14);
-    font-size: 6rem;
+    font-size:3rem;
     letter-spacing: 0.6rem;
     cursor: default;
     font-family: 'DM Serif Display', serif;
-    animation: fade-in-bck 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
-    -webkit-animation: fade-in-bck 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
+    /* animation: fade-in-bck 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
+    -webkit-animation: fade-in-bck 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both; */
 }
 
 .bg-container{
@@ -251,7 +258,7 @@ header{
 0% {
     -webkit-transform: perspective(200px) translateZ(80px);
             transform: perspective(200px) translateZ(80px);
-            -moz-transform: perspective(200px) (80px);
+            -moz-transform: perspective(200px) translateZ(80px);
             
 
     opacity: 0;
@@ -758,12 +765,16 @@ header{
         transform: scale(1.4);
     }
 
-    .div-menu-options a{
-        display: none;
-        margin-top: 0.7em;
+    button.icon-menu{
+        max-height: 30px;
     }
 
-    .div-menu-options a.icon-menu{
+    .div-menu-options button{
+        display: none;
+        margin-top: 0em;
+    }
+
+    .div-menu-options button.icon-menu{
         position:fixed;
         display: block;
         z-index: 1;
@@ -781,7 +792,7 @@ header{
     }
 
 
-    .div-menu-options.responsive a{
+    .div-menu-options.responsive button{
         display: block;
         text-align: left;
         color: black;
@@ -791,17 +802,17 @@ header{
     .menu-container .div-menu-options .Contacto::after,
     .menu-container .div-menu-options .Cursos::after,
     .menu-container .div-menu-options .Galeria::after{
-        width: 39%;
-        bottom: 18px;
-        margin-left: 1.7em;
+        width: 92%;
+        margin-left: 5px;
     }
 
-    .menu-container .div-menu-options .Contacto::after{
-        width: 54%;
-    }
-
-    .menu-container .div-menu-options .Galeria::after{
-        width: 68%;
+    .brandName{
+        min-width: 80%;
+        max-width: 80%;
+        margin: auto 10%;
+        top: 5%;
+        font-size: 2.2rem;
+        
     }
 
     .hook{
@@ -837,13 +848,18 @@ header{
         transform: scale(1.1);
     }
 
-    .div-menu-options a{
+    button.icon-menu{
+        margin-right: 10px;
+        top: 8px;
+    }
+
+    .div-menu-options button{
         display: none;
-        margin-top: 0.7em;
+        margin-top: 0em;
 
     }
 
-    .div-menu-options a.icon-menu{
+    .div-menu-options button.icon-menu{
         position:fixed;
         display: block;
     }
@@ -859,37 +875,42 @@ header{
         z-index: 1;
     }
 
+    .div-menu-options.responsive button:first-child{
+        margin-top: 27px;
+    }
 
-    .div-menu-options.responsive a{
+    .div-menu-options.responsive button{
         display: block;
         text-align: left;
         color: black;
         font-size: 0.8rem;
         letter-spacing: 1px;
-        padding: 0.5rem;
+        padding: 0.2rem;
+    }
+
+    .div-menu-options.responsive button.icon-menu{
+        right: 0%;
     }
 
 
     .menu-container .div-menu-options .Contacto::after,
     .menu-container .div-menu-options .Cursos::after,
     .menu-container .div-menu-options .Galeria::after{
-        width: 46%;
-        margin-left: 0.6em;
-        bottom: 8px;
+        width: 91%;
+        height: 1px;
+        margin-left: 0.3em;
+        bottom: 4px;
     }
 
-    .menu-container .div-menu-options .Contacto::after{
-        width: 67%;
-    }
-
-    .menu-container .div-menu-options .Galeria::after{
+    .menu-container .div-menu-options .Cursos::after{
         width: 85%;
     }
-    
+   
     
     .brandName{
-        margin-top: -0.5em;
-        font-size: 2.5rem;
+        top: 10%;
+        letter-spacing: 0.1rem;
+        font-size: 1rem;
     }
 
     .background-1{

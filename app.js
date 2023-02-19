@@ -9,7 +9,6 @@ function buttonAnimation(event) {
   event.preventDefault()
   const wrapper = document.getElementsByClassName( "button-wrapper" )[0];
     if(!wrapper.className.includes( ".checked" )) {
-          console.log("yes")
           wrapper.classList.add( "checked" );
           setTimeout(function(){
               wrapper.classList.remove( "checked" );
@@ -82,7 +81,6 @@ function responsive(){
 
 function responsiveMenu(){
   const menu = document.getElementById("topnav");
-  console.log(menu)
   if (menu.className === "div-menu-options") {
     menu.className += " responsive";
   } else {
