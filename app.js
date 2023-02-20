@@ -1,8 +1,21 @@
 let root = document.documentElement;
 
 
-var submit = document.getElementsByClassName("submit")
+const azure = document.getElementById("azure");
+const suncream = document.getElementById("suncream");
+const colection_image = document.getElementById("coleccion-image");
 
+
+azure.addEventListener("mouseover", function(event){
+  colection_image.style.backgroundImage = 'url("./images/azureBreeze.jpg")'
+  colection_image.style.backgroundPosition = '0px 0px' 
+})
+
+suncream.addEventListener("mouseover", function(event){
+  colection_image.style.backgroundPosition = '-160px 0'  
+  colection_image.style.backgroundImage = 'url("./images/suncream.JPG")'
+  
+})
 
 
 function buttonAnimation(event) {

@@ -1,101 +1,113 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANRAMO Cerámica</title>
-    <meta name="description" content="Piezas de cerámica dieñadas a la medida">
-    <link rel="icon" href="./images/logoo.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ANRAMO Cerámica</title>
+        <meta name="description" content="Piezas de cerámica dieñadas a la medida">
+        <link rel="icon" href="./images/logoo.svg">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;1,600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="app.js"></script>
-</head>
-<header>
-    <div class="menu-container">
-        <div>
-            <a href="https://www.qries.com/" class="logo-link">
-                <img src="./images/logoo.svg" class="menu-logo" >WWW
-            </a>
-        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
         
-        <div class="div-menu-options" id="topnav">
-                <button class="Galeria">COLECCIONES</button>
-                <button class="Cursos">CURSOS</button>
-                <button class="Contacto">CONTACTO</button>
-                <button class="icon-menu" onclick="responsiveMenu()"><i class="fa fa-bars"></i></button>
-        </div>
-        
-    </div>
-    <div class="brandName">ANA RAMIREZ MONTOYA</div>
-    <div class="bg-container">
-        <div class="background-1"></div>
-        <div class="background-2"></div>
-    </div>
-</header>
-<body>
-    <div class="transition reveal">
-        <object class="SVG" type="image/svg+xml" data="./images/bg_animated.svg"></object>
-        <div class="transition-text first-line">Artistas</div>
-        <div class="transition-text second-line">Que moldean esculturas,</div>
-        <div class="transition-text third-line">Que cincelan palabras</div>
-    </div>
-    <div class="mini-gallery reveal">
-        <div class="contactanos">
-
-            <div class="hook">Conoce nuestras últimas colecciones</div>
-
-            <div class="form__group field">
-                <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
-                <label for="name" class="form__label">Email</label>
+    </head>
+    <header>
+        <div class="menu-container">
+            <div class="logo-div">
+                <a href="https://www.qries.com/" class="logo-link">
+                    <img src="./images/logoo.svg" class="menu-logo" >WWW
+                </a>
             </div>
-                    
-            <div class="button-wrapper" id="button-wrapper">
-                <a class="submit" href="#" onclick="buttonAnimation(event)" >Submit</a>
-                <div class="loader-wrapper">
-                    <span class="loader yellow"></span>
-                    <span class="loader pink"></span>
-                </div>
-                <span class="loader orange"></span>
-                    
-                <div class="check-wrapper">
-                    <svg version="1.1"width="65px" height="38px" viewBox="0 0 64.5 37.4">
-                        <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
-                    </svg>
-                </div>
-            </div>
-                <svg xmlns="http://www.w3.org/2000/svg" version="1.1">  <defs>    <filter id="goo">      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />      <feBlend in="SourceGraphic" in2="goo" />    </filter>  </defs></svg>
-        </div>
-
-        <video class="bg-video" autoplay loop muted poster="" playsinline>
-            <source src="./images/pottery.mp4" type="video/mp4">
-        </video>
-    </div>
-    
-</body>
-<footer>
-    <div class="footer">
-        <div class="footer-text">
-            <div class="footer-brandname">ANRAMO</div>
             
-            <div class="footer-email"><a href="mailto: anna97rmz.com"   target="_blank">anna97rmz@gmail.com</a></div>
+            <div class="div-menu-options" id="topnav">
+                <div class="dropdown-coleccion">
+                    <button class="Galeria">COLECCIONES</button>
+                    <div class="colecciones-menu">
+                        <div class="colecciones-options">
+                            <div class="coleccion-1" id="azure">Azure breeze</div>
+                            <div class="coleccion-2" id="suncream">Suncream</div>
+                        </div>
+                        <div class="colecciones-image">
+                            <div class="coleccion-image" id="coleccion-image"></div>
+                        </div>
+                    </div>
+                </div>
+                    <button class="Cursos">CURSOS</button>
+                    <button class="Contacto">CONTACTO</button>
+                    <button class="icon-menu" onclick="responsiveMenu()"><i class="fa fa-bars"></i></button>
+            </div>
             
         </div>
-        <div class="icons">
-            <div><a href="https://www.instagram.com/nana.azure/"><img class="icons-img" src="./images/instagram.png"/></a></div>
-            <div><a href="https://www.pinterest.com/pinterest/"><img class="icons-img" src="./images/youtube.png"/></a></div>
+        <div class="brandName">ANA RAMIREZ MONTOYA</div>
+        <div class="bg-container">
+            <div class="background-1"></div>
+            <div class="background-2"></div>
         </div>
-        <div class="footer-ending">
-            <div class="legal">© 2023 ANRAMO</div>
-            <div class="siteby">Syte by Alejandro Peralta</div>
+    </header>
+    <body>
+        <div class="transition reveal">
+            <object class="SVG" type="image/svg+xml" data="./images/bg_animated.svg"></object>
+            <div class="transition-text first-line">Artistas</div>
+            <div class="transition-text second-line">Que moldean esculturas,</div>
+            <div class="transition-text third-line">Que cincelan palabras</div>
         </div>
-    </div>
-</footer>
+        <div class="mini-gallery reveal">
+            <div class="contactanos">
+
+                <div class="hook">Conoce nuestras últimas colecciones</div>
+
+                <div class="form__group field">
+                    <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
+                    <label for="name" class="form__label">Email</label>
+                </div>
+                        
+                <div class="button-wrapper" id="button-wrapper">
+                    <a class="submit" href="#" onclick="buttonAnimation(event)" >Submit</a>
+                    <div class="loader-wrapper">
+                        <span class="loader yellow"></span>
+                        <span class="loader pink"></span>
+                    </div>
+                    <span class="loader orange"></span>
+                        
+                    <div class="check-wrapper">
+                        <svg version="1.1"width="65px" height="38px" viewBox="0 0 64.5 37.4">
+                            <polyline class="check" points="5,13 21.8,32.4 59.5,5 "/>
+                        </svg>
+                    </div>
+                </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">  <defs>    <filter id="goo">      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />      <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />      <feBlend in="SourceGraphic" in2="goo" />    </filter>  </defs></svg>
+            </div>
+
+            <video class="bg-video" autoplay loop muted poster="" playsinline>
+                <source src="./images/pottery.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+    </body>
+    <footer>
+        <div class="footer">
+            <div class="footer-text">
+                <div class="footer-brandname">ANRAMO</div>
+                
+                <div class="footer-email"><a href="mailto: anna97rmz.com"   target="_blank">anna97rmz@gmail.com</a></div>
+                
+            </div>
+            <div class="icons">
+                <div><a href="https://www.instagram.com/nana.azure/"><img class="icons-img" src="./images/instagram.png"/></a></div>
+                <div><a href="https://www.pinterest.com/pinterest/"><img class="icons-img" src="./images/youtube.png"/></a></div>
+            </div>
+            <div class="footer-ending">
+                <div class="legal">© 2023 ANRAMO</div>
+                <div class="siteby">Syte by Alejandro Peralta</div>
+            </div>
+        </div>
+    </footer>
+<script src="app.js"></script>
 </html>
