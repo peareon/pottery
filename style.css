@@ -128,14 +128,21 @@ header{
 .colecciones-options div{
     margin: 20px 0;
     font-size: 2rem;
+    font-family: 'DM Serif Display', serif;
+    font-weight: lighter;
     letter-spacing: 1px;
     cursor: pointer;
 }
 
-.colecciones-options div:hover{
-    color: #fff;
+
+.colecciones-options div a{
+    text-decoration: none;
+    color: #111111;
 }
 
+.colecciones-options div a:hover{
+    color: #fff;
+}
 
 .colecciones-image{
     background: #ffffffc6;
@@ -149,7 +156,8 @@ header{
     height: 70%;
     top: 0;
     bottom: 0;
-    margin: auto auto;
+    margin: auto;
+    border-radius: 36px;
     background: url("./images/azureBreeze.jpg");
     background-size: cover;
 }
@@ -436,9 +444,10 @@ header{
     position: relative;
     top: 25%;
     padding-bottom: 15px;
-    width: 50%;
+    width: 65%;
     max-height: 80px;
-    margin: 0 auto;
+    margin-left: 23%;
+    margin-right: 22%;
     font-size: 5rem;
     font-style: italic;
 }
@@ -787,26 +796,25 @@ header{
 
 
 .icons{
-    position: relative;
-    top: -200px;
     width: 100%;
     height: 100px;
     display: flex;
     flex-direction: row;
     justify-content:space-evenly;
+    margin-top: 2em;
     
 }
 
 .icons div{
-    margin: 0 -35em;
-    height: 100px;
-    top: -200px;
+    width: 50px;
+    height: 50px;
 }
 
 
 .icons-img{
-    transform: scale(0.1);
-    margin: 0 -17em;
+    width: 100%;
+    height: 100%;
+    transform: scale(0.9);
     
     -webkit-user-select: none;
         -webkit-touch-callout: none;
@@ -817,7 +825,7 @@ header{
 
 
 .icons-img:hover{
-    transform: scale(0.12);
+    transform: scale(1);
 }
 
 
@@ -829,6 +837,7 @@ header{
     justify-content:space-evenly;
     font-family: 'DM Serif Display', serif;
     font-size: 0.9rem;
+    margin-top: -1em;
 }
 
 .siteby{
@@ -841,7 +850,7 @@ header{
 
 
 
-@media screen and (min-width: 420px) and (max-width: 1300px){
+@media screen and (min-width: 420px) and (max-width: 1024px){
     
 
     .menu-container .menu-logo{
