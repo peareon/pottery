@@ -13,7 +13,7 @@ azure.addEventListener("mouseover", function(event){
 
 suncream.addEventListener("mouseover", function(event){
   colection_image.style.backgroundPosition = '-160px 0'  
-  colection_image.style.backgroundImage = 'url("./images/suncream.JPG")'
+  colection_image.style.backgroundImage = 'url("./images/suncream.jpg")'
   
 })
 
