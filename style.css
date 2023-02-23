@@ -430,8 +430,8 @@ header{
 }
 
 .transition-text{
-    /* font-family: 'Lora', serif; */
-    font-family: 'Libre Franklin', sans-serif;
+    
+    font-family: 'Taviraj', serif;
     font-size: 2.5rem;
     font-weight: 400;
     letter-spacing: 0.1rem;
@@ -467,7 +467,8 @@ header{
     max-height: 80px;
     margin-left: 24%;
     margin-right: 16%;
-    font-family: 'Libre Franklin', sans-serif;
+    font-family: 'Taviraj', serif;
+    font-style: italic;
     font-size: 4.5rem;
 }
 
@@ -804,7 +805,7 @@ header{
 .footer-email a{
     color: rgb(234, 223, 223);
     text-decoration: none;
-    font-family: 'Libre Franklin', sans-serif;
+    font-family: 'Taviraj', serif;
     transition: 0.3s;
 }
 
