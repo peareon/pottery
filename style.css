@@ -431,8 +431,8 @@ header{
 
 .transition-text{
     /* font-family: 'Lora', serif; */
-    font-family: 'DM Serif Display', serif;
-    font-size: 2rem;
+    font-family: 'Libre Franklin', sans-serif;
+    font-size: 2.5rem;
     font-weight: 400;
     letter-spacing: 0.1rem;
     padding:0 2em;
@@ -440,11 +440,11 @@ header{
 }
 
 .first-line{
-    margin-bottom: -2em;
+    margin-bottom: -5em;
 }
 
 .third-line{
-    margin-top: -2em;
+    margin-top: -5em;
 }
 
 
@@ -467,8 +467,8 @@ header{
     max-height: 80px;
     margin-left: 24%;
     margin-right: 16%;
+    font-family: 'Libre Franklin', sans-serif;
     font-size: 4.5rem;
-    font-style: italic;
 }
 
 .bg-video{
@@ -804,6 +804,7 @@ header{
 .footer-email a{
     color: rgb(234, 223, 223);
     text-decoration: none;
+    font-family: 'Libre Franklin', sans-serif;
     transition: 0.3s;
 }
 
