@@ -41,6 +41,15 @@ function fitContent(){
       const adjustmentCurve = (ratio - 1.50308515)/0.03738281
       root.style.setProperty('--bg-translate', adjustmentCurve+"em");
     }
+  const buttons = document.getElementsByClassName("button-animated")
+  const buttonsArr = [...buttons]
+  setTimeout(() => {
+    buttonsArr.forEach(element => {
+      element.classList.add('notransition')
+    });
+  }, 10000)
+  
+  console.log(buttonsArr)
     
 }
 

@@ -14,7 +14,17 @@
     opacity: 1;
   }
 
+.notransition {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
 
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    -o-animation: none !important;
+    animation: none !important;
+}
 
 /* Header CSS */
 body{
@@ -174,10 +184,15 @@ header{
     font-size: 1.2rem;
     letter-spacing: 0.1rem;
     cursor: pointer;
-    -webkit-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
-    animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
-    -moz-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
-    -o-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s both;
+    color: white;
+    -webkit-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s backwards;
+    animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s backwards;
+    -moz-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s backwards;
+    -o-animation: navElements 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 2s backwards;
+}
+
+.Galeria, .Contacto, .Cursos{
+    color: white;
 }
 
 .menu-container .div-menu-options .Galeria::after,
@@ -826,6 +841,13 @@ header{
         user-select: none;
 }
 
+.instagram{
+    margin-left: 280%;
+}
+
+.youtube{
+    margin-left: -300%;
+}
 
 .icons-img:hover{
     transform: scale(1);
@@ -844,17 +866,22 @@ header{
 }
 
 .siteby{
-    margin-right: 1em;
+    margin-right: 7em;
+}
+
+.legal{
+    margin-left: 10em
 }
 
 .legal, .siteby{
     color: rgb(234, 223, 223);
     font-style: italic;
+    padding-bottom: 20px;
 }
 
 
 
-@media screen and (min-width: 420px) and (max-width: 1024px){
+@media screen and (min-width: 600px) and (max-width: 1024px){
     
 
     .menu-container .menu-logo{
@@ -899,14 +926,14 @@ header{
     .div-menu-options.responsive button{
         display: block;
         text-align: left;
-        color: black;
+        color: white;
         font-size: 1.2rem;
         letter-spacing: 1px;
         padding: 0.2rem;
     }
 
     .div-menu-options.responsive button:first-child{
-        margin-top: 35px;
+        margin-top: 45px;
     }
 
     .div-menu-options.responsive button.icon-menu{
@@ -948,11 +975,19 @@ header{
     .icons{
         margin-top: 0.4em;
     }
+
+    .instagram{
+        margin-left: 100%;
+    }
+    
+    .youtube{
+        margin-left: -100%;
+    }
 }
 
 
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 600px) {
 
     .menu-container .menu-logo{
         width: 40px;
@@ -996,7 +1031,7 @@ header{
     .div-menu-options.responsive button{
         display: block;
         text-align: left;
-        color: black;
+        color: white;
         font-size: 0.8rem;
         letter-spacing: 1px;
         padding: 0.2rem;
@@ -1024,7 +1059,7 @@ header{
     .brandName{
         top: 10%;
         letter-spacing: 0.1rem;
-        font-size: 1rem;
+        font-size: 2rem;
     }
 
     .background-1{
@@ -1128,15 +1163,15 @@ header{
     }
     
     .icons{
-        margin-top: -1.3em;
-    }
-
-    .icons-img{
-        transform: scale(0.05);
+        margin-top: 1em;
     }
 
     .icons-img:hover{
-        transform: scale(0.06);
+        transform: scale(0.65);
+    }
+
+    .icons-img{
+        transform: scale(0.65);
     }
 
     .icons div{
@@ -1144,11 +1179,22 @@ header{
         margin-left: 32px;
     }
 
+    .instagram{
+        margin-left: 60%;
+    }
+    
+    .youtube{
+        margin-left: -60%;
+    }
+
     .footer-ending{
         flex-direction: column;
     }
 
+
     .legal, .siteby{
+        margin-left: 0;
+        margin-right: 0;
         font-size: 0.6rem;
         font-weight: lighter;
         letter-spacing: 0.1em;
