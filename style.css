@@ -411,13 +411,17 @@ header{
     display: flex;
     align-self: center;
     justify-self: center;
+    margin-left: -150px;
 }
 
 .transition-text{
-    font-family: 'Lora', serif;
-    font-size: 4rem;
+    /* font-family: 'Lora', serif; */
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.8rem;
     font-weight: 400;
+    letter-spacing: 0.1rem;
     padding:0 2em;
+    margin-left: 15%;
 }
 
 .first-line{
@@ -444,11 +448,11 @@ header{
     position: relative;
     top: 25%;
     padding-bottom: 15px;
-    width: 65%;
+    width: 60%;
     max-height: 80px;
-    margin-left: 23%;
-    margin-right: 22%;
-    font-size: 5rem;
+    margin-left: 24%;
+    margin-right: 16%;
+    font-size: 4.5rem;
     font-style: italic;
 }
 
@@ -546,16 +550,16 @@ header{
     left: 0;
     padding:20px 0px;
     overflow: visible;
-  }
+}
   
-  .submit, .loader, .loader-wrapper{
+.submit, .loader, .loader-wrapper{
     position:absolute;
     left:0;
     right:0;
     margin:0 auto;
-  }
+}
   
-  .submit {
+.submit {
     z-index:2;
     width:135px;
     height:50px; /*Alto del boton*/
@@ -567,15 +571,14 @@ header{
     text-decoration:none;
     line-height:330%;    /*Altura de text*/
     transition: all 0.7s ease, line-height 0s ease, color 0.4s ease, filter 0.2s ease;
-  }
+}
   
-  #button-wrapper::selection, .submit::selection {
+#button-wrapper::selection, .submit::selection {
     background: transparent;
-  }
+}
   
-
   
-  .submit:after {
+.submit:after {
     content:"";
     z-index:-4;
     width:100%;
@@ -752,7 +755,6 @@ header{
 
 
 .footer{
-    background-color: white;
     height: 45vh;
     display: flex;
     background: url("./images/ave.svg");
@@ -770,6 +772,7 @@ header{
 
 .footer-brandname{
     font-family: 'DM Serif Display', serif;
+    color: rgb(234, 223, 223);
     font-size: 1.7rem;
     letter-spacing: 0.3rem;
     padding-top: 1em;
@@ -784,7 +787,7 @@ header{
 }
 
 .footer-email a{
-    color: black;
+    color: rgb(234, 223, 223);
     text-decoration: none;
     transition: 0.3s;
 }
@@ -845,6 +848,7 @@ header{
 }
 
 .legal, .siteby{
+    color: rgb(234, 223, 223);
     font-style: italic;
 }
 
