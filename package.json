@@ -1,7 +1,6 @@
 {
   "name": "pottery",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,10 +14,15 @@
   "dependencies": {
     "body-parser": "1.20.2",
     "ejs": "3.1.8",
-    "express": "4.18.2"
+    "express": "4.18.2",
+    "swiper": "^9.1.0"
   },
   "bugs": {
     "url": "https://github.com/peareon/pottery/issues"
   },
-  "homepage": "https://github.com/peareon/pottery#readme"
+  "homepage": "https://github.com/peareon/pottery#readme",
+  "directories": {
+    "test": "test"
+  },
+  "description": ""
 }

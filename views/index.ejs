@@ -1,5 +1,5 @@
 <%- include("partials/header.ejs") -%>
-        
+</header>
     <body>
         <div class="brandName">ANA RAMIREZ MONTOYA</div>
         <div class="bg-container">
@@ -16,7 +16,7 @@
         <div class="mini-gallery reveal">
             <div class="contactanos">
 
-                <div class="hook">Conoce nuestras últimas colecciones</div>
+                <div class="hook">Conoce las últimas colecciones</div>
 
                 <div class="form__group field">
                     <input type="input" class="form__field" placeholder="Name" name="name" id='name' required />
@@ -24,7 +24,19 @@
                 </div>
                         
                 <div class="button-wrapper" id="button-wrapper">
-                    <a class="submit" href="#" onclick="buttonAnimation(event)" >Submit</a>
+                    <a class="submit" href="#" onClick= "buttonAnimation(event)">Submit</a>
+                    <script>
+                        function buttonAnimation(event) {
+                            event.preventDefault()
+                            const wrapper = document.getElementsByClassName( "button-wrapper")[0];
+                                if(!wrapper.className.includes( ".checked" )) {
+                                    wrapper.classList.add( "checked" );
+                                    setTimeout(function(){
+                                        wrapper.classList.remove( "checked" );
+                                    }, 8000);
+                                }
+                            };
+                    </script>
                     <div class="loader-wrapper">
                         <span class="loader yellow"></span>
                         <span class="loader pink"></span>
@@ -41,7 +53,7 @@
             </div>
 
             <video class="bg-video" autoplay loop muted playsinline>
-                <source src="./images/pottery.mp4" type="video/mp4">
+                <source src="/images/Ana_pottery.mp4" type="video/mp4">
             </video>
         </div>
         

@@ -5,12 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ANRAMO Cerámica</title>
         <meta name="description" content="Piezas de cerámica dieñadas a la medida">
-        <link rel="icon" href="./images/logoo.svg">
+        <link rel="icon" href="/images/logosolo.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital@0;1&family=Taviraj:ital@0;1&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
         <link rel="stylesheet" href="/styles/style.css">
         
     </head>
@@ -18,8 +17,9 @@
         <div class="menu-container">
             <div class="logo-div">
                 <a href="/" class="logo-link">
-                    <img src="./images/logoo.svg" class="menu-logo" >WWW
+                    <img src="/images/logosolo.png" class="menu-logo" >WWW
                 </a>
+                <div class="logo-name">Ana RM</div>
             </div>
             
             <navbar class="div-menu-options" id="topnav">
@@ -34,14 +34,21 @@
                             <div class="coleccion-image" id="coleccion-image"></div>
                         </div>
                     </div>
+                    <button class="Cursos button-animated">TIENDA</button>
+                    <button class="Contacto button-animated">CONTACTO</button>
                 </div>
-                <button class="Cursos button-animated">CURSOS</button>
-                <button class="Contacto button-animated">CONTACTO</button>
                 <button class="icon-menu button-animated" onclick="responsiveMenu()"><i class="fa fa-bars"></i></button>
+                <script>
+                    function responsiveMenu(){
+                        const menu = document.getElementById("topnav");
+                        if (menu.className === "div-menu-options") {
+                            menu.className += " responsive";
+                        } else {
+                            menu.className = "div-menu-options";
+                        }
+                    }
+                </script>
             </navbar>
             
         </div>
-    </header>
-    <div class="headeroffset">
     
-    </div>

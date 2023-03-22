@@ -12,37 +12,10 @@ azure.addEventListener("mouseover", function(event){
 })
 
 suncream.addEventListener("mouseover", function(event){
-  colection_image.style.backgroundPosition = '-160px 0'  
   colection_image.style.backgroundImage = 'url("./images/suncream.jpg")'
-  
 })
 
 
-function buttonAnimation(event) {
-  event.preventDefault()
-  const wrapper = document.getElementsByClassName( "button-wrapper" )[0];
-    if(!wrapper.className.includes( ".checked" )) {
-          wrapper.classList.add( "checked" );
-          setTimeout(function(){
-              wrapper.classList.remove( "checked" );
-          }, 8000);
-      }
-};
-
-
-
-document.addEventListener("click", e =>{
-  const isDropDownButton = e.target.matches("[data-dropdown-button]")
-  if(!isDropDownButton && e.target.closest("[data-dropdown]") != null) return
-
-  let currentDropdown
-  if(isDropDownButton){
-    currentDropdown = e.target.closest("[data-dropdown]")
-    currentDropdown.classList.toggle('isactive')
-  }
-
-  document.querySelectorAll()
-})
 
 
 function fitContent(){
@@ -61,9 +34,8 @@ function fitContent(){
     buttonsArr.forEach(element => {
       element.classList.add('notransition')
     });
-  }, 10000)
+  }, 8000)
   
-  console.log(buttonsArr)
     
 }
 
@@ -99,6 +71,7 @@ function reveal() {
 
 function responsive(){
   const ratio = window.innerWidth/window.innerHeight;
+  console.log(ratio)
   var bg_1 = document.getElementsByClassName("background-1")[0];
   var bg_2 = document.getElementsByClassName("background-2")[0];
   
@@ -115,14 +88,37 @@ function responsive(){
   }
 }
 
-function responsiveMenu(){
-  const menu = document.getElementById("topnav");
-  if (menu.className === "div-menu-options") {
-    menu.className += " responsive";
-  } else {
-    menu.className = "div-menu-options";
+document.addEventListener("click", e =>{
+  const body = document.body;
+
+
+  const isDropDownButton = e.target.matches("[data-dropdown-button]")
+  if(!isDropDownButton && e.target.closest("[data-dropdown]") != null) return
+
+  let currentDropdown
+  
+  if(isDropDownButton){
+    currentDropdown = e.target.closest("[data-dropdown]")
+    currentDropdown.classList.toggle('isactive')
   }
-}
+
+  const menuResopnsive = document.getElementsByClassName("div-menu-options")[0]
+  console.log(menuResopnsive.classList)
+  if (!menuResopnsive.classList.contains("responsive")){
+    body.style.overflow = 'visible';
+    if (!currentDropdown.classList.contains('isactive')){
+      body.style.overflow = 'visible';
+    }
+    else{
+      body.style.overflow = 'hidden';
+    }
+  }
+  else{
+    body.style.overflow = 'hidden';
+  }
+
+})
+
 
 
 window.addEventListener("DOMContentLoaded", fitContent);
