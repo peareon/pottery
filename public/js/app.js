@@ -22,19 +22,39 @@ function fitContent(){
   const ratio = window.innerWidth/window.innerHeight;
   var bg_1 = document.getElementsByClassName("background-1")[0];
   var bg_2 = document.getElementsByClassName("background-2")[0];
-    if (ratio < 1.5){
-      bg_1.classList.add("small-ratio")
-      bg_2.classList.add("small-ratio")
-      const adjustmentCurve = (ratio - 1.50308515)/0.03738281
-      root.style.setProperty('--bg-translate', adjustmentCurve+"em");
-    }
+  var bg = document.getElementsByClassName("bg-single")[0];
+  console.log(ratio)
+  
+  if (ratio <= 1.5){
+    bg_1.classList.add("small-ratio-double")
+    bg_2.classList.add("small-ratio-double")
+    bg.classList.remove("small-ratio-single")
+
+  }
+  else{
+
+    bg.classList.add("small-ratio-single")
+    bg_1.classList.remove("small-ratio-double")
+    bg_2.classList.remove("small-ratio-double")
+    
+  }
   const buttons = document.getElementsByClassName("button-animated")
+  const bg1 = document.getElementsByClassName("background-1")
+  const bg2 = document.getElementsByClassName("background-2")
   const buttonsArr = [...buttons]
+  const bgs = [...bg1, ...bg2]
   setTimeout(() => {
     buttonsArr.forEach(element => {
       element.classList.add('notransition')
+    })
+
+    bgs[0].style.opacity = '0.7'
+    bgs[1].style.opacity = '0.8'
+    bgs.forEach(element => {
+      element.classList.add('notransition')
     });
-  }, 8000)
+    
+  }, 5000)
   
     
 }
@@ -71,25 +91,28 @@ function reveal() {
 
 function responsive(){
   const ratio = window.innerWidth/window.innerHeight;
-  console.log(ratio)
   var bg_1 = document.getElementsByClassName("background-1")[0];
   var bg_2 = document.getElementsByClassName("background-2")[0];
-  
+  var bg = document.getElementsByClassName("bg-single")[0];
+
   if (ratio <= 1.5){
-    bg_1.classList.add("small-ratio")
-    bg_2.classList.add("small-ratio")
-    const adjustmentCurve = (ratio - 1.50308515)/0.03738281
-    root.style.setProperty('--bg-translate', adjustmentCurve+"em");
+    bg_1.classList.add("small-ratio-double")
+    bg_2.classList.add("small-ratio-double")
+    bg.classList.remove("small-ratio-single")
+
   }
   else{
-    bg_1.classList.remove("small-ratio")
-    bg_2.classList.remove("small-ratio")
-    root.style.setProperty('--bg-translate', 0+"em")
+
+    bg.classList.add("small-ratio-single")
+    bg_1.classList.remove("small-ratio-double")
+    bg_2.classList.remove("small-ratio-double")
+    
   }
 }
 
 document.addEventListener("click", e =>{
   const body = document.body;
+  const menuButtons = document.getElementsByClassName("button-animated")
 
 
   const isDropDownButton = e.target.matches("[data-dropdown-button]")
@@ -98,12 +121,16 @@ document.addEventListener("click", e =>{
   let currentDropdown
   
   if(isDropDownButton){
-    currentDropdown = e.target.closest("[data-dropdown]")
-    currentDropdown.classList.toggle('isactive')
+
+    currentDropdown = e.target.closest("[data-dropdown]");
+    currentDropdown.classList.toggle('isactive');
+    menuButtons[0].classList.add('menu-mobile');
+    menuButtons[1].classList.add('menu-mobile');
+    menuButtons[2].classList.add('menu-mobile');
+    menuButtons[3].classList.add('menu-mobile');
   }
 
   const menuResopnsive = document.getElementsByClassName("div-menu-options")[0]
-  console.log(menuResopnsive.classList)
   if (!menuResopnsive.classList.contains("responsive")){
     body.style.overflow = 'visible';
     if (!currentDropdown.classList.contains('isactive')){

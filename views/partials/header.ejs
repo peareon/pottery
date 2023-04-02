@@ -17,9 +17,9 @@
         <div class="menu-container">
             <div class="logo-div">
                 <a href="/" class="logo-link">
-                    <img src="/images/logosolo.png" class="menu-logo" >WWW
+                    <img src="/images/logosolo.png" class="menu-logo" >
                 </a>
-                <div class="logo-name">Ana RM</div>
+                <!-- <div class="logo-name">Ana RM</div> -->
             </div>
             
             <navbar class="div-menu-options" id="topnav">
@@ -29,6 +29,18 @@
                         <div class="colecciones-options">
                             <div class="coleccion-1" id="azure"><a href="/Colba">Azure breeze</a></div>
                             <div class="coleccion-2" id="suncream"><a href="/Solstego">Suncream</a></div>
+                            <button class="back-button" onclick="backtoMenu()">Back <</button>
+                            <script>
+                                function backtoMenu(){
+                                    const menuButtons = document.getElementsByClassName("button-animated");
+                                    const dropdown = document.getElementsByClassName("dropdown-coleccion")[0];
+                                    dropdown.className = "dropdown-coleccion"
+                                    menuButtons[0].classList.remove('menu-mobile')
+                                    menuButtons[1].classList.remove('menu-mobile')
+                                    menuButtons[2].classList.remove('menu-mobile')
+                                    menuButtons[3].classList.remove('menu-mobile')
+                                }
+                            </script>
                         </div>
                         <div class="colecciones-image">
                             <div class="coleccion-image" id="coleccion-image"></div>
@@ -36,14 +48,26 @@
                     </div>
                     <button class="Cursos button-animated">TIENDA</button>
                     <button class="Contacto button-animated">CONTACTO</button>
+                    <button class="Contacto button-animated">CARRITO</button>
                 </div>
                 <button class="icon-menu button-animated" onclick="responsiveMenu()"><i class="fa fa-bars"></i></button>
                 <script>
                     function responsiveMenu(){
                         const menu = document.getElementById("topnav");
+                        const dropdown = document.getElementsByClassName("dropdown-coleccion")[0];
+                        const menuButtons = document.getElementsByClassName("button-animated");
+                        const elementTop = menu.getBoundingClientRect().top;
                         if (menu.className === "div-menu-options") {
                             menu.className += " responsive";
-                        } else {
+                            menu.style.top = -1*elementTop+'px';
+                        } else if (menu.classList.contains('responsive') && dropdown.classList.contains('isactive')) {
+                            dropdown.classList.remove('isactive');
+                            menuButtons[0].classList.remove('menu-mobile')
+                            menuButtons[1].classList.remove('menu-mobile')
+                            menuButtons[2].classList.remove('menu-mobile')
+                            menuButtons[3].classList.remove('menu-mobile')
+                        }
+                        else{
                             menu.className = "div-menu-options";
                         }
                     }

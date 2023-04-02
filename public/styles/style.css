@@ -76,8 +76,8 @@ header{
 
 
 .menu-container .menu-logo{
-    height: 80px;
-    width: 80px;
+    height: 60px;
+    width: 60px;
     margin-top: 10px;
     margin-left: 20px;
     background: url("./images/logoo.svg");
@@ -152,6 +152,7 @@ header{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 40px;
 }
 
 .colecciones-options div{
@@ -189,6 +190,16 @@ header{
     border-radius: 36px;
     background: url("/images/azureBreeze.jpg");
     background-size: cover;
+}
+
+
+
+.back-button{
+    display: none;
+    font-size: 16px !important;
+    color: #3e3636 !important;
+    animation: none !important;
+    transition: none !important;
 }
 
 .menu-container .div-menu-options button{
@@ -249,20 +260,34 @@ header{
     height: 15%;
     max-width: 70%;
     min-width: 70%;
-    top: 0;
-    bottom: 0;
+    left: 15px;
+    top: 55px;
+    bottom: 0px;
+    z-index: 0;
 
     margin: auto 15%;
     text-align: center;
 
 
     color: rgb(22, 14, 14);
-    font-size:4.5rem;
+    font-size:3.8rem;
     letter-spacing: 0.6rem;
     cursor: default;
     font-family: 'DM Serif Display', serif;
     animation: fade-in-bck 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
     -webkit-animation: fade-in-bck 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.7s both;
+}
+
+.bg-single{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background: url("/images/main.jpg");
+    background-size: cover;
+    background-position: center 60%;
+    z-index: -2;
+    opacity: 0.7;
+
 }
 
 .bg-container{
@@ -274,6 +299,7 @@ header{
 .background-1, .background-2{
     padding: 0%;
     margin: 0%;
+
     
     flex-grow: 1;
     background: scroll url("/images/main.jpg") center 60% no-repeat;
@@ -286,12 +312,14 @@ header{
 }
 
 .background-1{
+    background-position: left 0% top 60%;
     animation: bg-1-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
         -moz-animation: bg-1-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
         -webkit-animation: bg-1-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
 }
 
 .background-2{
+    background-position: right 0% top 60%;
     animation: bg-2-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
         -moz-animation: bg-2-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
         -webkit-animation: bg-2-fs 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
@@ -300,19 +328,19 @@ header{
 @keyframes bg-1-fs{
     0%{
     
-        background-position: left var(--bg-translate) top 0%;
+        background-position: left 0% top 0%;
         opacity: 0;
     }
 
     50%{
     
-        background-position: left var(--bg-translate) top 30%;
+        background-position: left 0% top 30%;
         opacity: 0.2;
     }
 
     100%{
     
-        background-position: left var(--bg-translate) top 60%;
+        background-position: left 0% top 60%;
         opacity: 0.7;
     }
 
@@ -321,29 +349,31 @@ header{
 @keyframes bg-2-fs{
     0%{
     
-        background-position: right var(--bg-translate) top 120%;
+        background-position: right 0% top 120%;
         opacity: 0;
     }
 
     50%{
     
-        background-position: right var(--bg-translate) top 90%;
+        background-position: right 0% top 90%;
         opacity: 0.2;
     }
 
     100%{
     
-        background-position: right var(--bg-translate) top 60%;
+        background-position: right 0% top 60%;
         opacity: 0.8;
     }
 
 }
 
 
+.small-ratio-single{
+    display: none !important;
+}
 
-.small-ratio{
-    background-size: cover;
-    
+.small-ratio-double{
+    display: none !important;
 }
 
 
@@ -416,7 +446,7 @@ header{
 
 .transition {
 	height: 80vh;
-    min-height: 70%;
+    min-height: 50%;
     max-width: 100%;
     background: url("") no-repeat 40% center;
     background-image: none;
@@ -904,8 +934,17 @@ header{
 
     button.icon-menu{
         max-height: 30px;
-            margin-right: 10px;
-            top: 8px;
+        margin-right: 10px;
+        top: 8px;
+    }
+
+    .dropdown-coleccion{ 
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
     }
 
     .div-menu-options button{
@@ -917,20 +956,21 @@ header{
     .div-menu-options button.icon-menu{
         position:fixed;
         display: block;
-        z-index: 1;
+        right: 20px;
+        top: 43px;
     }
 
     
     .div-menu-options.responsive{
-        position: fixed;
-        float: right;
+        position: absolute;
+        top: auto;
         right: 0;
         display: inline;
-        background: rgba(186, 127, 97, 0.7);
-        border-radius: 8px;
+        width: 100%;
+        height: 100vh;
+        background: rgba(186, 127, 97);
         z-index: 1;
     }
-
 
     .div-menu-options.responsive button{
         display: block;
@@ -938,17 +978,25 @@ header{
         color: white;
         font-size: 1.2rem;
         letter-spacing: 1px;
-        padding: 0.2rem;
     }
 
-    .div-menu-options.responsive button:first-child{
-        margin-top: 45px;
-    }
-
+ 
     .div-menu-options.responsive button.icon-menu{
-        right: 0%;
+        right: 21px;
+        top: 43px;
     }
 
+    .coleccion-image{
+        width: 72%;
+        height: 40%;
+        border-radius: 8px;
+        background-repeat: no-repeat;
+    }
+
+
+    .menu-mobile{
+        display: none !important;
+    }
 
     .menu-container .div-menu-options .Contacto::after,
     .menu-container .div-menu-options .Cursos::after,
@@ -961,7 +1009,8 @@ header{
         min-width: 80%;
         max-width: 80%;
         margin: auto 10%;
-        top: 5%;
+        left: 13px;
+        top: 9.6%;
         font-size: 2.9rem;
         
     }
@@ -1007,10 +1056,19 @@ header{
         transform: scale(1.1);
     }
 
-    /* button.icon-menu{
-        margin-right: 10px;
-        top: 8px;
-    } */
+    .dropdown-coleccion{ 
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+    
+
+    .back-button{
+        display:block;
+    }
 
     .div-menu-options button{
         display: none;
@@ -1026,11 +1084,12 @@ header{
     
     .div-menu-options.responsive{
         position: absolute;
+        top: auto;
         right: 0;
         display: inline;
         width: 100%;
         height: 100vh;
-        background: rgba(186, 127, 97, 0.7);
+        background: rgba(186, 127, 97);
         z-index: 1;
     }
 
@@ -1047,7 +1106,6 @@ header{
         right: 20px;
         top: 43px;
         transform: scale(1.5);
-
     }
 
     .coleccion-image{
@@ -1058,13 +1116,17 @@ header{
     }
 
 
+    .menu-mobile{
+        display: none !important;
+    }
+
     .menu-container .div-menu-options .Contacto::after,
     .menu-container .div-menu-options .Cursos::after,
     .menu-container .div-menu-options .Galeria::after{
         width: 91%;
         height: 1px;
         margin-left: 0.3em;
-        bottom: 4px;
+        bottom: -1px;
     }
 
     .menu-container .div-menu-options .Cursos::after{
@@ -1073,6 +1135,7 @@ header{
    
     
     .brandName{
+        left: 0px;
         top: 10%;
         letter-spacing: 0.1rem;
         font-size: 2rem;
@@ -1088,6 +1151,10 @@ header{
         animation: bg-2-sz 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
             -moz-animation: bg-2-sz 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
             -webkit-animation: bg-2-sz 3s cubic-bezier(0.015, 0.82, 0.65, 1) 0.6s forwards;
+    }
+
+    .transition{
+        height: 50%;
     }
     
     .transition-text{
@@ -1109,14 +1176,14 @@ header{
     }
 
     .hook{
-        top: 28%;
+        top: 38%;
         padding-bottom: 0;
         font-size: 1.2rem;
         font-style: italic;
     }
 
     .form__group {
-        top: 36%;
+        top: 44%;
         width: 50%;
     }
 
@@ -1219,20 +1286,19 @@ header{
 
     @keyframes bg-1-sz{
         0%{
-        
-            background-position: left 15.2% top 0%;
+            background-position: left var(--bg-translate) top 0%;
             opacity: 0;
         }
     
         50%{
         
-            background-position: left 24.4% top 30%;
+            background-position: left var(--bg-translate) top 30%;
             opacity: 0.2;
         }
     
         100%{
         
-            background-position: left 35.7% top 60%;
+            background-position: left var(--bg-translate) top 60%;
             opacity: 0.7;
         }
     
@@ -1241,19 +1307,19 @@ header{
     @keyframes bg-2-sz{
         0%{
         
-            background-position: right 15.2% top 120%;
+            background-position: right var(--bg-translate)top 120%;
             opacity: 0;
         }
     
         50%{
         
-            background-position: right 24.4% top 90%;
+            background-position: right var(--bg-translate) top 90%;
             opacity: 0.2;
         }
     
         100%{
         
-            background-position: right 35.7% top 60%;
+            background-position: right var(--bg-translate) top 60%;
             opacity: 0.8;
         }
     
