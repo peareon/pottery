@@ -23,19 +23,20 @@ function fitContent(){
   var bg_1 = document.getElementsByClassName("background-1")[0];
   var bg_2 = document.getElementsByClassName("background-2")[0];
   var bg = document.getElementsByClassName("bg-single")[0];
-  console.log(ratio)
+  var container = document.getElementsByClassName("bg-container")[0];
   
   if (ratio <= 1.5){
-    bg_1.classList.add("small-ratio-double")
-    bg_2.classList.add("small-ratio-double")
-    bg.classList.remove("small-ratio-single")
-
+    bg_1.classList.add("small-ratio-double");
+    bg_2.classList.add("small-ratio-double");
+    bg.classList.remove("small-ratio-single");
+    container.style.height = "0";
   }
   else{
 
-    bg.classList.add("small-ratio-single")
-    bg_1.classList.remove("small-ratio-double")
-    bg_2.classList.remove("small-ratio-double")
+    bg.classList.add("small-ratio-single");
+    bg_1.classList.remove("small-ratio-double");
+    bg_2.classList.remove("small-ratio-double");
+    container.style.height = "100vh";
     
   }
   const buttons = document.getElementsByClassName("button-animated")
@@ -94,11 +95,13 @@ function responsive(){
   var bg_1 = document.getElementsByClassName("background-1")[0];
   var bg_2 = document.getElementsByClassName("background-2")[0];
   var bg = document.getElementsByClassName("bg-single")[0];
+  var container = document.getElementsByClassName("bg-container")[0];
 
   if (ratio <= 1.5){
     bg_1.classList.add("small-ratio-double")
     bg_2.classList.add("small-ratio-double")
     bg.classList.remove("small-ratio-single")
+    container.style.height = "0";
 
   }
   else{
@@ -106,6 +109,7 @@ function responsive(){
     bg.classList.add("small-ratio-single")
     bg_1.classList.remove("small-ratio-double")
     bg_2.classList.remove("small-ratio-double")
+    container.style.height = "100vh";
     
   }
 }
