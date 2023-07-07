@@ -1,0 +1,59 @@
+    <%- include("partials/header.ejs") -%>
+    <link rel="stylesheet" href="/styles/contacto.css">
+    </header>
+
+
+    <body>
+        <div class="headeroffset">
+
+        </div>
+
+        <div class="cbackground">
+            <div class="ccontacto">
+                <div class="ctitle">Contáctanos</div>
+                <div class="ctext">Tienes algún diseño en mente, quieres hacer una coolaboración, o simplemente resolver algunas dudas, escribe tu correo y presiona el botón</div>
+                <form action="/Contacto" method="post">
+                    <label for="inp" class="inp">
+                        <input type="text" id="inp" name="cemail" placeholder="&nbsp;">
+                        <span class="label">email</span>
+                        <span class="focus-bg"></span>
+                    </label>
+
+                    <a href="" onClick="preventLoad(event); this.parentNode.submit()" class="link link--alt">
+                        <script>
+                            function preventLoad(event) {
+                                event.preventDefault()
+                                }
+                        </script>
+                        <svg viewBox='0 0 200 200' width='200' height='200' xmlns='http://www.w3.org/2000/svg' class="link__svg" aria-labelledby="link2-title link2-desc">
+                            <title id="link2-title">A ceramear</title>
+                            <desc id="link2-desc"></desc>
+
+                            <path id="link-circle-alt" class="link__path" d="M 35, 100 a 65,65 0 1,1 130,0 a 65,65 0 1,1 -130,0" stroke="none" fill="none" />
+
+
+                            <g class="link__face">
+                                <path d='M 95 102 Q 100 107 105 102' fill="none" />
+                                <ellipse class='' cx='90' cy='100' rx='2' ry='2' stroke="none" />
+                                <ellipse class='' cx='110' cy='100' rx='2' ry='2' stroke="none" />
+                                <ellipse class='' cx='100' cy='100' rx='35' ry='35' fill="none" />
+                            </g>
+
+                            <text class="link__text">
+                                <textPath href="#link-circle-alt" stroke="none">
+                                    • Vamos a ceramear  • Vamos a ceramear
+                                </textPath>
+                            </text>
+                        </svg>
+                    </a>
+                </form>
+            </div>
+            <div class="cimage">
+                
+            </div>
+            
+        </div>
+
+    </body>
+<%- include("partials/footer.ejs") -%>
+</html>

@@ -1,0 +1,62 @@
+.titulo{
+    margin-top: 60px;
+    text-align: center;
+}
+
+.tiendacontainer{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 220px;
+    justify-content: center;
+}
+
+.item{
+    position: relative;
+    padding: 0px 40px;
+    max-width: calc(50% - 80px);
+    flex-basis: 30%;
+    min-height: 300px;
+    margin: 0px 60px;
+}
+
+.itemname{
+    position: absolute;
+    background-color: rgb(236, 230, 230);
+    top: -10px;
+    width: auto;
+    max-width: 33%;
+    left: 0;
+    right: 0;
+    text-align: center;
+    margin: auto;
+}
+
+.numberitems{
+    padding: 6px 0;
+}
+
+.card{
+    position: relative;
+    padding: 30px 0px 120px 0px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: -1;
+}
+
+.carddetails{
+    position: absolute;
+    padding-top: 10px;
+    left: 55px;
+    bottom: 20px;
+}
+
+.cardimage{
+    height: 350px;
+    width: 350px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+

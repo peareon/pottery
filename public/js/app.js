@@ -118,7 +118,7 @@ document.addEventListener("click", e =>{
   const body = document.body;
   const menuButtons = document.getElementsByClassName("button-animated")
 
-
+  
   const isDropDownButton = e.target.matches("[data-dropdown-button]")
   if(!isDropDownButton && e.target.closest("[data-dropdown]") != null) return
 

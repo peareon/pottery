@@ -1,0 +1,43 @@
+    <%- include("partials/header.ejs") -%>
+    <link rel="stylesheet" href="/styles/tienda.css">
+    </header>
+
+    <body>
+        <div class="headeroffset">
+
+        </div>
+        <h1 class="titulo"> Tienda de cerámica</h1>
+        <div class="tiendaContainer">
+            
+            <% newListItems.forEach(function(item){ %>
+                <div class="item">
+                    <div class="itemname"><%= item.nombre.toUpperCase() %></div>
+                    <div class="card">
+                        <img src=<%=item.image%> class="cardimage">
+                        <div class="carddetails">
+                            <div class="precio">Retribución: $ <%= item.precio %> </div>
+                            <div class="compra">
+                                <div>
+                                    <% if (item.cantidad > 0){%>
+                                        <button>
+                                            <img src="/images/tienda/shopping-cart.png" alt="" height="15px">
+                                        </button>
+                                    <% }else if (item.cantidad == 0) {%>
+                                        <button disabled>
+                                            sold out
+                                        </button>
+                                        <% } %>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% })  %> 
+               
+        </div>
+
+
+    </body>
+<%- include("partials/footer.ejs") -%>
+</html>
