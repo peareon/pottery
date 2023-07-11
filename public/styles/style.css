@@ -80,7 +80,7 @@ header{
     width: 60px;
     margin-top: 10px;
     margin-left: 20px;
-    background: url("./images/logoo.svg");
+    /* background: url("./images/logoo.svg"); */
     background-size: cover;
     word-break: break-all;
     color: transparent;
@@ -284,7 +284,7 @@ header{
     width: 100%;
     height: 100%;
     background: transparent;
-    transition: var(--mainTra);
+    transition: all 0.3 linear;
     background: rgba(218, 173, 130, 0.75);
     z-index: 2;
     visibility: hidden;
@@ -294,13 +294,13 @@ header{
     position: fixed;
     top:0;
     right: 0;
-    width: 93%;
+    width: 94.2%;
     height: 100%;
     overflow: scroll;
     z-index: 3;
     background: rgb(231,226,221);
     padding: 1.5em;
-    transition: var(--mainTra);
+    transition: all 0.3 linear;
     transform: translateX(100%);
 }
 
@@ -309,7 +309,7 @@ header{
 }
 
 .transparentBcg{
-    visibility: hidden;
+    visibility: visible;
 }
 
 @media screen and (min-width: 768px) {
@@ -379,6 +379,23 @@ header{
 .cart-footer h3{
     text-transform: capitalize;
     margin-bottom: 1rem;
+}
+
+.banner-btn{
+    padding: 1rem 3rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+    background: #523E37 !important;
+    color: #f6f6f6;
+    border: 1px solid #523E37 !important; 
+    transition: all 0.3 linear;
+    cursor: pointer;
+}
+
+.banner-btn:hover{
+    background: transparent;
+    color: #523E37;
 }
 
 .brandName{

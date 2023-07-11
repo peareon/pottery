@@ -2,6 +2,11 @@
     <link rel="stylesheet" href="/styles/tienda.css">
     </header>
 
+    <head>
+        <script type="text/javascript"
+            src="/js/app.js">
+        </script>
+    </head>
     <body>
         <div class="headeroffset">
 
@@ -19,16 +24,68 @@
                             <div class="compra">
                                 <div>
                                     <% if (item.cantidad > 0){%>
-                                        <button>
+                                        <button id="<%= item.nombre %>1" data-nombre="<%= item.nombre %>" data-image="<%= item.image %>" data-precio="<%= item.precio %>" data-cantidad="<%= item.cantidad %>" onclick="addToCart(event)">
+                                            <script>
+                                                function addToCart(event){
+                                                    let name = event.currentTarget.getAttribute("data-nombre");
+                                                    let image = event.currentTarget.getAttribute("data-image");
+                                                    let precio = event.currentTarget.getAttribute("data-precio");
+                                                    let cantidad = event.currentTarget.getAttribute("data-cantidad");
+                                                    let inCart = cart.find(item => item.name === name);
+                                                    if (inCart){
+                                                        event.currentTarget.innerText = "In cart";
+                                                        event.currentTarget.disabled = true;
+                                                        cartOverlay.classList.add('transparentBcg'); // tal vez lo quite
+                                                        cartDOM.classList.add('showCart');
+                                                    }
+                                                    else{
+                                                        event.currentTarget.innerText = "In cart";
+                                                        event.currentTarget.disabled = true;
+                                                        event.currentTarget.classList.add("buttonItemDisabled");
+                                                        //get prodcut, add it to the cart and save cart in local storage
+                                                        let cartItem = {name: name, image: image, precio: precio, amount: 1};
+                                                        cart = [...cart,cartItem]
+                                                        console.log("added");
+                                                        localStorage.setItem('cart', JSON.stringify(cart));
+                                                        //display catr item
+                                                        let itemsTotal = 0;
+                                                        let tempTotal = 0;
+                                                        cart.map(item =>{
+                                                            tempTotal += item.precio * item.amount;
+                                                            itemsTotal += 1;
+                                                        })
+                                                        cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
+                                                        cartItems.innerText = itemsTotal;
+                                                        const div = document.createElement('div');
+                                                        div.setAttribute("id", name);
+                                                        div.classList.add('cart-item');
+                                                        div.innerHTML = `
+                                                        <img src= ${image} alt="product">
+                                                        <div>
+                                                            <h4>${name}</h4>
+                                                            <h5>$${precio}</h5>
+                                                            <span class="remove-item" data-id = ${name}>remove</span>
+                                                        </div>
+                                                        <div>
+                                                            <i class="fa fa-chevron-up" data-id = ${name} data-id = ${cantidad} ></i>
+                                                            <p class="item-amount">1</p>
+                                                            <i class="fa fa-chevron-down" data-id = ${name}></i>
+                                                        </div>`
+                                                        cartContent.appendChild(div);
+                                                        cartOverlay.classList.add('transparentBcg');
+                                                        cartDOM.classList.add('showCart');
+                                                    }
+                                                    
+                                                }
+                                            </script>
                                             <img src="/images/tienda/shopping-cart.png" alt="" height="15px">
                                         </button>
-                                    <% }else if (item.cantidad == 0) {%>
+                                    <% }else if (item.cantidad === 0) {%>
                                         <button disabled>
                                             sold out
                                         </button>
                                         <% } %>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>

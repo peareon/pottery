@@ -16,15 +16,6 @@ const pieceSchema = {
 
 const Piece = mongoose.model("piece", pieceSchema)
 
-// const pajaro = new Piece({
-//     name: "pajaro",
-//     qty: 1,
-//     image: "none"
-// })
-
-
-// Piece.insertMany([pajaro])
-
 
 const app = express();
 

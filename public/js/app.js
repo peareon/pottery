@@ -1,3 +1,4 @@
+
 let root = document.documentElement;
 
 
@@ -5,6 +6,144 @@ const azure = document.getElementById("azure");
 const suncream = document.getElementById("suncream");
 const colection_image = document.getElementById("coleccion-image");
 
+//variables
+const cartBtn = document.querySelector(".cart-btn");
+const closeCartBtn = document.querySelector(".close-cart");
+const clearCartBtn = document.querySelector(".clear-cart");
+const cartDOM = document.querySelector(".cart");
+const cartOverlay = document.querySelector(".cart-overlay");
+const cartItems = document.querySelector(".cart-items");
+const cartTotal = document.querySelector(".cart-total");
+const cartContent = document.querySelector(".cart-content");
+// const productsDOM = document.querySelector(".products-center");
+
+let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+
+function showCart(){
+  cartOverlay.classList.add("transparentBcg");
+  cartDOM.classList.add("showCart");
+}
+
+function hideCart(){
+  cartOverlay.classList.remove("transparentBcg");
+  cartDOM.classList.remove("showCart");
+}
+
+function clearCart(){
+  cartTotal.innerText = 0;
+  cartItems.innerText = 0;
+  cartContent.replaceChildren();
+  localStorage.removeItem('cart');
+  const itemsButtonsHTML = document.getElementsByClassName("buttonItemDisabled");
+  const itemsButtons = Array.from(itemsButtonsHTML);
+  itemsButtons.forEach(button => {
+    button.innerHTML = `<img src="/images/tienda/shopping-cart.png" alt="" height="15px"></img>`;
+    button.disabled = false;
+  });
+  cart = []
+}
+
+cartBtn.addEventListener("click", showCart);
+closeCartBtn.addEventListener("click", hideCart);
+clearCartBtn.addEventListener("click", clearCart);
+
+//cart
+let itemsTotal = 0;
+let tempTotal = 0;
+cart.map(item =>{
+    tempTotal += item.precio * item.amount;
+    itemsTotal += item.amount;
+})
+cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
+cartItems.innerText = itemsTotal;
+// display products
+cart.forEach(item =>{
+    if (!document.getElementById(item.name)){
+      const div = document.createElement('div');
+      div.setAttribute("id", item.name); //checar si ya existe en el carrito y no volverlo a crear
+      div.classList.add('cart-item');
+      div.innerHTML = `
+      <img src= ${item.image} alt="product">
+      <div>
+          <h4>${item.name}</h4>
+          <h5>$${item.precio}</h5>
+          <span class="remove-item" data-id = ${item.name}>remove</span>
+      </div>
+      <div>
+          <i class="fa fa-chevron-up" data-id = ${item.name}></i>
+          <p class="item-amount">1</p>
+          <i class="fa fa-chevron-down" data-id = ${item.name}></i>
+      </div>`
+      cartContent.appendChild(div);
+    }
+    
+} )
+
+cartContent.addEventListener("click", event => {
+  
+  if (event.target.classList.contains("remove-item")){
+    let removeItem = event.target;
+    let product = event.target.getAttribute("data-name");
+    cartContent.removeChild(removeItem.parentElement.parentElement);
+    cart = cart.filter(item => item.name !== product);
+    console.log(cart);
+    console.log(product)
+    let itemsTotal = 0;
+    let tempTotal = 0;
+    cart.map(item =>{
+        tempTotal += item.precio * item.amount;
+        itemsTotal += 1;
+    })
+    cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
+    cartItems.innerText = itemsTotal;
+    localStorage.setItem('cart', JSON.stringify(cart));
+    //enable buttons
+    let enableButton = document.getElementById(product+"1");
+    enableButton.innerHTML = `<img src="/images/tienda/shopping-cart.png" alt="" height="15px"></img>`;
+    enableButton.disabled = false;
+  }
+
+  else if (event.target.classList.contains("fa-chevron-up")){
+    let cantidad = event.target.getAttribute("data-cantidad");
+    let addAmount = event.target;
+    let product = addAmount.dataset.name;
+    let tempItem = cart.find(item => item.name === product);
+    if (tempItem.amount < cantidad){
+      tempItem.amount = tempItem.amount + 1;
+      localStorage.setItem('cart', JSON.stringify(cart));
+      let itemsTotal = 0;
+      let tempTotal = 0;
+      cart.map(item =>{
+        tempTotal += item.precio * item.amount;
+        itemsTotal += item.amount;
+      })
+      cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
+      cartItems.innerText = itemsTotal;
+      addAmount.nextElementSibling.innerText = tempItem.amount;
+    }
+    else{
+      //let him know
+    }
+  }
+  else if(event.target.classList.contains("fa-chevron-down")){
+    let susbtractAmount = event.target;
+    let product = susbtractAmount.dataset.name;
+    let tempItem = cart.find(item => item.name === product);
+    if (tempItem.amount > 1){
+      empItem.amount = tempItem.amount - 1;
+      localStorage.setItem('cart', JSON.stringify(cart));
+      let itemsTotal = 0;
+      let tempTotal = 0;
+      cart.map(item =>{
+        tempTotal += item.precio * item.amount;
+        itemsTotal += 1;
+      })
+      cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
+      cartItems.innerText = itemsTotal;
+      addAmount.nextElementSibling.innerText = tempItem.amount;
+    }
+  } 
+})
 
 azure.addEventListener("mouseover", function(event){
   colection_image.style.backgroundImage = 'url("./images/azureBreeze.jpg")'
@@ -14,7 +153,6 @@ azure.addEventListener("mouseover", function(event){
 suncream.addEventListener("mouseover", function(event){
   colection_image.style.backgroundImage = 'url("./images/suncream.jpg")'
 })
-
 
 
 
@@ -152,6 +290,9 @@ document.addEventListener("click", e =>{
 
 
 
-window.addEventListener("DOMContentLoaded", fitContent);
+window.addEventListener("DOMContentLoaded", () => {
+  fitContent();
+  const ui = new UI();
+});
 window.addEventListener("scroll", reveal);
 window.addEventListener("resize", responsive);
