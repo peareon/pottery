@@ -2,11 +2,7 @@
     <link rel="stylesheet" href="/styles/tienda.css">
     </header>
 
-    <head>
-        <script type="text/javascript"
-            src="/js/app.js">
-        </script>
-    </head>
+
     <body>
         <div class="headeroffset">
 
@@ -27,10 +23,17 @@
                                         <button id="<%= item.nombre %>1" data-nombre="<%= item.nombre %>" data-image="<%= item.image %>" data-precio="<%= item.precio %>" data-cantidad="<%= item.cantidad %>" onclick="addToCart(event)">
                                             <script>
                                                 function addToCart(event){
+                                                    let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+                                                    const cartDOM = document.querySelector(".cart");
+                                                    const cartOverlay = document.querySelector(".cart-overlay");
+                                                    const cartContent = document.querySelector(".cart-content");
+                                                    const cartItems = document.querySelector(".cart-items");
+                                                    const cartTotal = document.querySelector(".cart-total");
                                                     let name = event.currentTarget.getAttribute("data-nombre");
                                                     let image = event.currentTarget.getAttribute("data-image");
                                                     let precio = event.currentTarget.getAttribute("data-precio");
                                                     let cantidad = event.currentTarget.getAttribute("data-cantidad");
+                                                    console.log(cantidad)
                                                     let inCart = cart.find(item => item.name === name);
                                                     if (inCart){
                                                         event.currentTarget.innerText = "In cart";
@@ -43,9 +46,8 @@
                                                         event.currentTarget.disabled = true;
                                                         event.currentTarget.classList.add("buttonItemDisabled");
                                                         //get prodcut, add it to the cart and save cart in local storage
-                                                        let cartItem = {name: name, image: image, precio: precio, amount: 1};
+                                                        let cartItem = {name: name, image: image, precio: precio, amount: 1, stock: cantidad};
                                                         cart = [...cart,cartItem]
-                                                        console.log("added");
                                                         localStorage.setItem('cart', JSON.stringify(cart));
                                                         //display catr item
                                                         let itemsTotal = 0;
@@ -67,7 +69,7 @@
                                                             <span class="remove-item" data-id = ${name}>remove</span>
                                                         </div>
                                                         <div>
-                                                            <i class="fa fa-chevron-up" data-id = ${name} data-id = ${cantidad} ></i>
+                                                            <i class="fa fa-chevron-up" data-id = ${name} data-cantidad = ${cantidad}></i>
                                                             <p class="item-amount">1</p>
                                                             <i class="fa fa-chevron-down" data-id = ${name}></i>
                                                         </div>`

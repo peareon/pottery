@@ -52,7 +52,7 @@ let itemsTotal = 0;
 let tempTotal = 0;
 cart.map(item =>{
     tempTotal += item.precio * item.amount;
-    itemsTotal += item.amount;
+    itemsTotal += 1;
 })
 cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
 cartItems.innerText = itemsTotal;
@@ -70,8 +70,8 @@ cart.forEach(item =>{
           <span class="remove-item" data-id = ${item.name}>remove</span>
       </div>
       <div>
-          <i class="fa fa-chevron-up" data-id = ${item.name}></i>
-          <p class="item-amount">1</p>
+          <i class="fa fa-chevron-up" data-id = ${item.name} data-cantidad = ${item.stock}></i>
+          <p class="item-amount">${item.amount}</p>
           <i class="fa fa-chevron-down" data-id = ${item.name}></i>
       </div>`
       cartContent.appendChild(div);
@@ -82,12 +82,11 @@ cart.forEach(item =>{
 cartContent.addEventListener("click", event => {
   
   if (event.target.classList.contains("remove-item")){
+    let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
     let removeItem = event.target;
-    let product = event.target.getAttribute("data-name");
+    let product = event.target.getAttribute("data-id");
     cartContent.removeChild(removeItem.parentElement.parentElement);
     cart = cart.filter(item => item.name !== product);
-    console.log(cart);
-    console.log(product)
     let itemsTotal = 0;
     let tempTotal = 0;
     cart.map(item =>{
@@ -104,10 +103,13 @@ cartContent.addEventListener("click", event => {
   }
 
   else if (event.target.classList.contains("fa-chevron-up")){
+    let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
     let cantidad = event.target.getAttribute("data-cantidad");
     let addAmount = event.target;
-    let product = addAmount.dataset.name;
+    let product = addAmount.dataset.id;
+
     let tempItem = cart.find(item => item.name === product);
+
     if (tempItem.amount < cantidad){
       tempItem.amount = tempItem.amount + 1;
       localStorage.setItem('cart', JSON.stringify(cart));
@@ -126,11 +128,14 @@ cartContent.addEventListener("click", event => {
     }
   }
   else if(event.target.classList.contains("fa-chevron-down")){
+    let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
     let susbtractAmount = event.target;
-    let product = susbtractAmount.dataset.name;
+    let product = susbtractAmount.dataset.id;
+
     let tempItem = cart.find(item => item.name === product);
+
     if (tempItem.amount > 1){
-      empItem.amount = tempItem.amount - 1;
+      tempItem.amount = tempItem.amount - 1;
       localStorage.setItem('cart', JSON.stringify(cart));
       let itemsTotal = 0;
       let tempTotal = 0;
@@ -140,7 +145,7 @@ cartContent.addEventListener("click", event => {
       })
       cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
       cartItems.innerText = itemsTotal;
-      addAmount.nextElementSibling.innerText = tempItem.amount;
+      susbtractAmount.previousElementSibling.innerText = tempItem.amount;
     }
   } 
 })
@@ -292,7 +297,6 @@ document.addEventListener("click", e =>{
 
 window.addEventListener("DOMContentLoaded", () => {
   fitContent();
-  const ui = new UI();
 });
 window.addEventListener("scroll", reveal);
 window.addEventListener("resize", responsive);
