@@ -202,7 +202,7 @@ header{
     transition: none !important;
 }
 
-.menu-container .div-menu-options button{
+.menu-container .div-menu-options .button-animated{
     position:relative;
     text-decoration: none;
     background: transparent;
@@ -570,10 +570,10 @@ header{
 
 @keyframes navElements {
     0% {
-        -webkit-transform: perspective(200px) translateZ(80px);
-                transform: perspective(200px) translateZ(80px);
-                -moz-transform: perspective(200px) (80px);
-        opacity: 0;
+        -webkit-transform: perspective(120px) translateZ(20px);
+                transform: perspective(120px) translateZ(20px);
+                -moz-transform: perspective(120px) (20px);
+        opacity: 0.2;
         color: white;
     }
     100% {
@@ -1071,12 +1071,6 @@ form{
         transform: scale(1.4);
     }
 
-    button.icon-menu{
-        max-height: 30px;
-        margin-right: 10px;
-        top: 8px;
-    }
-
     .dropdown-coleccion{ 
         width: 100%;
         height: 100%;
@@ -1096,7 +1090,9 @@ form{
         position:fixed;
         display: block;
         right: 20px;
-        top: 43px;
+        top: 15px;
+        max-height: 30px;
+        margin-right: 10px;
     }
 
     
@@ -1108,7 +1104,7 @@ form{
         width: 100%;
         height: 100vh;
         background: rgba(186, 127, 97);
-        z-index: 1;
+        z-index: 2;
     }
 
     .div-menu-options.responsive button{
@@ -1118,11 +1114,21 @@ form{
         font-size: 1.2rem;
         letter-spacing: 1px;
     }
-
  
     .div-menu-options.responsive button.icon-menu{
-        right: 21px;
-        top: 43px;
+        right: 20px;
+        top: 54px;
+        position: absolute;
+    }
+
+    .div-menu-options.responsive .button-animated{
+        animation: none;
+        opacity: 0.75;
+    }
+
+    .banner-btn{
+        margin: auto;
+        display: block !important;
     }
 
     .coleccion-image{
@@ -1192,16 +1198,18 @@ form{
     }
     
     .icon-menu i{
-        transform: scale(1.1);
+        position: absolute;
+        top: 9px;
+        right: 6px;
+        transform: scale(1.8);
     }
 
     .dropdown-coleccion{ 
-        width: 100%;
+        width: auto;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0;
     }
     
 
@@ -1223,13 +1231,17 @@ form{
     
     .div-menu-options.responsive{
         position: absolute;
-        top: auto;
-        right: 0;
         display: inline;
         width: 100%;
         height: 100vh;
         background: rgba(186, 127, 97);
-        z-index: 1;
+        z-index: 2;
+        margin: auto;
+    }
+
+    .div-menu-options.responsive .button-animated{
+        animation: none;
+        opacity: 0.75;
     }
 
 
@@ -1242,9 +1254,30 @@ form{
     }
 
     .div-menu-options.responsive button.icon-menu{
-        right: 20px;
-        top: 43px;
-        transform: scale(1.5);
+        right: 17px;
+        top: 49px;
+        position: absolute;
+    }
+
+    .menu-container .div-menu-options .button-animated{
+        font-size: 0.6rem;
+    }
+
+    .menu-container .dropdown-coleccion button{
+        margin: 0.7rem;
+    }
+
+    .cart{
+        padding: 0.8em;
+    }
+
+    .cart h2, .cart h3, .cart h4, .cart h5{
+        letter-spacing: 0.008rem;
+    }
+
+    .banner-btn{
+        margin: auto;
+        display: block !important;
     }
 
     .coleccion-image{

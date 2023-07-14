@@ -159,9 +159,8 @@ suncream.addEventListener("mouseover", function(event){
   colection_image.style.backgroundImage = 'url("./images/suncream.jpg")'
 })
 
-
-
 function fitContent(){
+  console.log("listo")
   const ratio = window.innerWidth/window.innerHeight;
   var bg_1 = document.getElementsByClassName("background-1")[0];
   var bg_2 = document.getElementsByClassName("background-2")[0];
@@ -188,8 +187,10 @@ function fitContent(){
   const buttonsArr = [...buttons]
   const bgs = [...bg1, ...bg2]
   setTimeout(() => {
+    
     buttonsArr.forEach(element => {
       element.classList.add('notransition')
+      console.log(element)
     })
 
     bgs[0].style.opacity = '0.7'
@@ -198,7 +199,7 @@ function fitContent(){
       element.classList.add('notransition')
     });
     
-  }, 5000)
+  }, 3000)
   
     
 }
@@ -293,9 +294,7 @@ document.addEventListener("click", e =>{
 
 })
 
-
-
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", function(){
   fitContent();
 });
 window.addEventListener("scroll", reveal);

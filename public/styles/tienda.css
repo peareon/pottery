@@ -6,6 +6,7 @@
 .tiendacontainer{
     margin-top: 80px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     margin-bottom: 220px;
     justify-content: center;
@@ -14,10 +15,11 @@
 .item{
     position: relative;
     padding: 0px 40px;
-    max-width: calc(50% - 80px);
     flex-basis: 30%;
     min-height: 300px;
-    margin: 0px 60px;
+    margin: 0px 0px 15px 0px;
+    max-width: 49%;
+    min-width: 39%;
 }
 
 .itemname{
@@ -39,7 +41,7 @@
 
 .card{
     position: relative;
-    padding: 30px 0px 120px 0px;
+    padding: 30px 33px 120px 33px;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -50,18 +52,67 @@
 .carddetails{
     position: absolute;
     padding-top: 10px;
-    left: 55px;
-    bottom: 20px;
+    left: 35px;
+    bottom: 35px;
 }
 
 .cardimage{
-    height: 350px;
-    width: 350px;
+    height: 100%;
+    width: 100%;
     border-radius: 10px;
     object-fit: cover;
+}
+
+.compra{
+    padding-top: 12px;
 }
 
 .compra button{
     cursor: pointer;
 }
 
+@media screen and (min-width: 600px) and (max-width: 1024px){
+    .item{
+        padding: 0px 25px 0 25px;
+    }
+    .cardimage{
+        border-radius: 5px;
+    }
+
+    .card{
+        padding: 30px 17px 120px 17px;
+    }
+
+
+}
+
+@media screen and (max-width: 600px) {
+    .item{
+        margin: 0px 0px 75px 0px;
+        flex-basis: 100%;
+        min-width: 80%;
+    }
+
+    .cardimage{
+        border-radius: 4px;
+    }
+
+    .carddetails{
+        left: 35px;
+        bottom: 35px;
+    }
+
+    .card{
+        padding: 30px 15px 110px 15px;
+    }
+
+    .titulo {
+        font-size: 1.8rem;
+        letter-spacing: 0.02rem;
+
+    }
+
+    .itemname{
+        font-size: 0.9rem;
+    }
+}
