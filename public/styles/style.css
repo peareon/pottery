@@ -78,9 +78,7 @@ header{
 .menu-container .menu-logo{
     height: 60px;
     width: 60px;
-    margin-top: 10px;
     margin-left: 20px;
-    /* background: url("./images/logoo.svg"); */
     background-size: cover;
     word-break: break-all;
     color: transparent;
@@ -129,7 +127,7 @@ header{
     pointer-events: none;
     width: 100vw;
     height: 100vh;
-    z-index: 1;
+    z-index: 2;
     background-color: #111111;
     display: flex;
 
@@ -200,6 +198,11 @@ header{
     color: #3e3636 !important;
     animation: none !important;
     transition: none !important;
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+    cursor: pointer;
 }
 
 .menu-container .div-menu-options .button-animated{
@@ -1090,7 +1093,7 @@ form{
         position:fixed;
         display: block;
         right: 20px;
-        top: 15px;
+        top: 2px;
         max-height: 30px;
         margin-right: 10px;
     }
@@ -1117,7 +1120,7 @@ form{
  
     .div-menu-options.responsive button.icon-menu{
         right: 20px;
-        top: 54px;
+        top: 42px;
         position: absolute;
     }
 
@@ -1213,13 +1216,18 @@ form{
     }
     
 
+    .colecciones-options div {
+        font-size: 1.3rem;
+        letter-spacing: 0px;
+      }
+
     .back-button{
         display:block;
     }
 
     .div-menu-options button{
         display: none;
-        margin-top: 0em;
+        margin-top: -1.5em;
     }
 
     .div-menu-options button.icon-menu{
@@ -1255,7 +1263,7 @@ form{
 
     .div-menu-options.responsive button.icon-menu{
         right: 17px;
-        top: 49px;
+        top: 58px;
         position: absolute;
     }
 
@@ -1281,8 +1289,8 @@ form{
     }
 
     .coleccion-image{
-        width: 72%;
-        height: 25%;
+        width: 85%;
+        height: 20%;
         border-radius: 10px;
         background-repeat: no-repeat;
     }

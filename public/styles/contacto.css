@@ -2,12 +2,13 @@
   box-sizing: border-box;
 }
 
-form{
+.cform{
   display: flex;
   flex-direction: column;
   top: 0;
   margin: 0;
   padding: 120px 0px 0px 10px;
+  width: 60%;
 }
 
 .cbackground{
@@ -26,6 +27,7 @@ form{
     display: flex;
     flex-direction: column;
     text-justify: distribute;
+    height: 70vh;
 }
 
 .ctitle{
@@ -53,7 +55,7 @@ form{
 
 .inp {
   position: relative;
-  margin: auto;
+  margin-left: 40px;
   width: 100%;
   max-width: 280px;
   border-radius: 3px;
@@ -117,11 +119,11 @@ form{
 .inp input:focus {
   background: rgba(0, 0, 0, 0.05);
   outline: none;
-  box-shadow: inset 0 -2px 0 #ca8d97;
+  box-shadow: inset 0 -2px 0 #473c3f;
 }
 .inp input:focus + .label {
-  color: #ca8d97;
-  transform: translate3d(0, -12px, 0) scale(0.75);
+  color: #473c3f;
+  transform: translate3d(0, -1px, 0) scale(0.90);
 }
 .inp input:focus + .label + .focus-bg {
   transform: scaleX(1);
@@ -213,3 +215,100 @@ button{
       transform: rotate(-360deg);
     }
   }
+
+@media screen and (min-width: 600px) and (max-width: 1024px){
+  .ctitle {
+    font-size: 2.4em;
+    padding: 10px 0px 0px 50px;
+  }
+  .ctext{
+    font-size: 0.85em;
+    padding: 20px 20px 0px 50px;
+  }
+
+  .cform{
+    width: 70%;
+    padding: 10px 0px 0px 10px;
+  }
+
+  .inp{
+    margin-left: 35px;
+  }
+
+  .inp input{
+    font-size: 11px;
+  }
+
+  .inp .label{
+    font-size: 14px;
+  }
+
+  .link{
+    height: auto;
+  }
+
+  .cimage{
+    height: 45vh;
+  }
+
+  .ccontacto{
+    height: 40vh;
+  }
+
+  .link{
+    width: 7.3rem;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .ctitle {
+    font-size: 1em;
+    padding: 10px 0px 0px 50px;
+  }
+  .ctext{
+    display: none;
+  }
+
+  .cform{
+    width: 70%;
+    padding: 10px 0px 0px 10px;
+  }
+
+  .inp{
+    width: 110%;
+    margin-left: 35px;
+    margin-bottom: 20px;
+  }
+
+  .inp input{
+    font-size: 12px;
+    height: 36px;
+  }
+
+  .inp .label{
+    font-size: 10px;
+  }
+
+  .link{
+    height: auto;
+  }
+
+  .cimage{
+    display: none;
+  }
+
+  .ccontacto{
+    height: 25vh;
+    min-height: 12rem;
+  }
+
+  .link{
+    width: 6.2rem;
+  }
+
+  .inp input:not(:placeholder-shown) + .label {
+    transform: translate3d(0, 2px, 0) scale(0.75);
+  }
+
+}
