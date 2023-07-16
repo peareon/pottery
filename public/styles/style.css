@@ -1196,8 +1196,8 @@ form{
 @media screen and (max-width: 600px) {
 
     .menu-container .menu-logo{
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
     }
     
     .icon-menu i{
@@ -1272,7 +1272,7 @@ form{
     }
 
     .menu-container .dropdown-coleccion button{
-        margin: 0.7rem;
+        margin: 0.4rem;
     }
 
     .cart{
