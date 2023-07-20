@@ -159,6 +159,30 @@ suncream.addEventListener("mouseover", function(event){
   colection_image.style.backgroundImage = 'url("./images/suncream.jpg")'
 })
 
+const payButton = document.getElementById("paymentButton");
+payButton.addEventListener('click', ()=> {
+  let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
+  console.log(cart)
+  fetch("/payment",{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      items: cart
+  }),
+  })
+  .then(res => {
+    if (res.ok) return res.json();
+    return res.json().then(json => Promise.reject(json))
+  }).then(({url}) => {
+    console.log(url)
+    window.location = url
+  }).catch(e =>{
+    console.error(e.error, "error");
+  })
+})
+
 function fitContent(){
   const buttons = document.getElementsByClassName("button-animated")
   const buttonsArr = [...buttons]

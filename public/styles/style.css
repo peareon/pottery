@@ -389,9 +389,9 @@ header{
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     font-size: 1rem;
-    background: #523E37 !important;
+    background: #523E37;
     color: #f6f6f6;
-    border: 1px solid #523E37 !important; 
+    border: 1px solid #523E37; 
     transition: all 0.3 linear;
     cursor: pointer;
 }
@@ -400,6 +400,54 @@ header{
     background: transparent;
     color: #523E37;
 }
+
+/* CSS */
+.banner-btn-clear {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border: 1px solid #dbdbdb;
+  border-radius: .375em;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #363636;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: 'DM Serif Display', serif;
+  height: 2.5em;
+  justify-content: center;
+  line-height: 1.5;
+  padding: calc(.5em - 1px) 1em;
+  position: relative;
+  text-align: center;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  display: block;
+  margin: auto;
+  margin-top: auto;
+  margin-top: 30px;
+}
+
+.banner-btn-clear:active {
+  border-color: #4a4a4a;
+  outline: 0;
+}
+
+.banner-btn-clear:focus {
+  border-color: #485fc7;
+  outline: 0;
+}
+
+.banner-btn-clear:hover {
+  border-color: #b5b5b5;
+}
+
+.banner-btn-clear:focus:not(:active) {
+  box-shadow: rgba(72, 95, 199, .25) 0 0 0 .125em;
+}
+
 
 .brandName{
     position: absolute;

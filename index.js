@@ -1,8 +1,12 @@
+require('dotenv').config();
+
 const express = require("express");
-const bodyParser = require("body-parser")
-const ejs = require("ejs")
-const mongoose = require("mongoose")
-const https = require("https")
+const bodyParser = require("body-parser");
+const ejs = require("ejs");
+const mongoose = require("mongoose");
+const https = require("https");
+const { url } = require('inspector');
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
 
 mongoose.connect("mongodb://localhost:27017/ceramica")
@@ -22,6 +26,7 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json())
 app.use(express.static("public"))
 
 
@@ -57,6 +62,14 @@ app.get("/Tienda", function(req, res){
     
 })
 
+app.get("/cancel", function(req, res){
+    res.render("cancel")
+})
+
+app.get("/success", function(req, res){
+    res.render("success")
+})
+
 
 app.post("/", function(req, res){
     
@@ -86,7 +99,6 @@ app.post("/", function(req, res){
 
     const request = https.request(url, options, function(reponse){
         reponse.on("data", function(data){
-            console.log(JSON.parse(data))
         })
     })
 
@@ -95,6 +107,34 @@ app.post("/", function(req, res){
 
     setTimeout(() => res.render("index"), 5500)
     
+})
+
+app.post("/payment", async function(req, res){
+    try{
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'], //add paypal
+            mode: 'payment',
+            line_items: req.body.items.map(item =>{
+                return{
+                    price_data:{
+                        currency: 'usd',
+                        product_data: {
+                            name: item.name
+                        },
+                        unit_amount: Number(item.precio) //Convert to cents
+                    },
+                    quantity: item.amount
+                }
+            }),
+            success_url: `${process.env.SERVER_URL}/success`,
+            cancel_url: `${process.env.SERVER_URL}/cancel`
+        })
+        console.log(url)
+        res.json({url: session.url})
+    }
+    catch(e){
+        res.status(500).json({error: e.message});
+    }   
 })
 
 
@@ -126,7 +166,6 @@ app.post("/Contacto", function(req, res){
 
     const request = https.request(url, options, function(reponse){
         reponse.on("data", function(data){
-            console.log(JSON.parse(data))
         })
     })
 
@@ -141,5 +180,3 @@ app.listen(3000, function(req, res){
     console.log("uhu")
 })
 
-
-// dc2b35dac0
