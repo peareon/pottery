@@ -9,7 +9,7 @@ const { url } = require('inspector');
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
 
-mongoose.connect("mongodb://localhost:27017/ceramica")
+mongoose.connect("mongodb://localhost:27017/ceramica");
 
 const pieceSchema = {
    nombre: String,
@@ -18,7 +18,20 @@ const pieceSchema = {
    image: String
 }
 
-const Piece = mongoose.model("piece", pieceSchema)
+const orderSchema = {
+    pieza: String,
+    cantidad: Number,
+    precio: Number,
+    total: String,
+    add1: String,
+    add2: String,
+    city: String,
+    state: String,
+    ZIP: String
+ }
+
+const Piece = mongoose.model("piece", pieceSchema);
+const Order = mongoose.model("order", orderSchema);
 
 
 const app = express();
@@ -26,7 +39,6 @@ const app = express();
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.json())
 app.use(express.static("public"))
 
 
@@ -56,18 +68,35 @@ app.get("/Contacto", function(req, res){
 app.get("/Tienda", function(req, res){
 
     getItems().then(function(FoundPieces){
-        console.log(FoundPieces)
         res.render("Tienda", {newListItems:FoundPieces})
     })
     
 })
 
-app.get("/cancel", function(req, res){
-    res.render("cancel")
+app.get("/stockerror", function(req, res){
+    console.log(req.headers)
+    origin = JSON.stringify(req.headers['sec-fetch-site'])
+    res.render("stockerror")
+    // if (origin === "cross-site"){
+    //     res.render("stockerror")
+    // }
+    // else{
+    //     res.redirect("/")
+    // }
+    
 })
 
+
+
 app.get("/success", function(req, res){
+    origin = JSON.stringify(req.headers['sec-fetch-site'])
     res.render("success")
+    // if (origin === "none"){
+    //     res.render("success")
+    // }
+    // else{
+    //     res.redirect("/")
+    // }
 })
 
 
@@ -105,32 +134,147 @@ app.post("/", function(req, res){
     request.write(jsonData);
     request.end();
 
-    setTimeout(() => res.render("index"), 5500)
-    
+    setTimeout(() => res.render("index"), 5500)  
 })
 
+
+async function handlePaymentIntentSucceeded(data){
+    console.log(data)
+    console.log(JSON.parse(data))
+    console.log(typeof JSON.parse(data))
+    await Order.create(JSON.parse(data))
+
+}
+
+const endpointSecret = 'whsec_022bf863d3a61390b6d6654539c533b167df79df95559516480f931636c8c220';
+
+
+app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
+  let event = request.body;
+  // Only verify the event if you have an endpoint secret defined.
+  // Otherwise use the basic event deserialized with JSON.parse
+  if (endpointSecret) {
+    // Get the signature sent by Stripe
+    const signature = request.headers['stripe-signature'];
+    try {
+      event = stripe.webhooks.constructEvent(
+        request.body,
+        signature,
+        endpointSecret
+      );
+    } catch (err) {
+      console.log(`⚠️  Webhook signature verification failed.`, err.message);
+      return response.sendStatus(400);
+    }
+  }
+  // Handle the event
+  switch (event.type) {
+    case 'payment_intent.succeeded':
+      const paymentIntent = event.data.object;
+      console.log(paymentIntent)
+      console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
+      // Then define and call a method to handle the successful payment intent.
+      handlePaymentIntentSucceeded(paymentIntent);
+      break;
+    case 'payment_method.attached':
+      const paymentMethod = event.data.object;
+      // Then define and call a method to handle the successful attachment of a PaymentMethod.
+      // handlePaymentMethodAttached(paymentMethod);
+      break;
+    default:
+      // Unexpected event type
+      console.log(`Unhandled event type ${event.type}.`);
+  }
+
+  // Return a 200 response to acknowledge receipt of the event
+  response.send();
+});
+
+
+app.use(express.json())
+
 app.post("/payment", async function(req, res){
+
+    req.body.items.forEach(element => async function() {
+        if (!await Piece.find({nombre: element.name, cantidad: {$gte: element.amount}})){
+            res.redirect("/cancel");
+            console.log("testing")
+        }
+    });
+
     try{
+        // let items = json.stringify(req.body.items)
         const session = await stripe.checkout.sessions.create({
+            shipping_address_collection: {
+                allowed_countries: ['MX']
+            },
+            shipping_options: [
+                {
+                    shipping_rate_data: {
+                        type: 'fixed_amount',
+                        fixed_amount:{
+                            amount: 0,
+                            currency: 'mxn',
+                        },
+                        display_name: 'Free Shipping',
+                        delivery_estimate: {
+                            minimum: {
+                                unit: 'business_day',
+                                value: 5
+                            },
+                            maximum: {
+                                unit: 'business_day',
+                                value: 7
+                            },
+                        }
+                    }
+                },
+                {
+                    shipping_rate_data: {
+                        type: 'fixed_amount',
+                        fixed_amount:{
+                            amount: 50000,
+                            currency: 'mxn',
+                        },
+                        display_name: 'Next Day',
+                        delivery_estimate: {
+                            minimum: {
+                                unit: 'business_day',
+                                value: 1
+                            },
+                            maximum: {
+                                unit: 'business_day',
+                                value: 1
+                            },
+                        }
+                    }
+                }
+
+            ],
             payment_method_types: ['card'], //add paypal
             mode: 'payment',
+            payment_intent_data:{
+                metadata:{
+                    items: JSON.stringify(req.body.items)
+                }
+            },
             line_items: req.body.items.map(item =>{
                 return{
                     price_data:{
-                        currency: 'usd',
+                        currency: 'mxn',
                         product_data: {
                             name: item.name
                         },
-                        unit_amount: Number(item.precio) //Convert to cents
+                        unit_amount: Number(item.precio)*100
                     },
                     quantity: item.amount
                 }
             }),
             success_url: `${process.env.SERVER_URL}/success`,
-            cancel_url: `${process.env.SERVER_URL}/cancel`
+            cancel_url: `${process.env.SERVER_URL}/`
         })
-        console.log(url)
         res.json({url: session.url})
+        
     }
     catch(e){
         res.status(500).json({error: e.message});

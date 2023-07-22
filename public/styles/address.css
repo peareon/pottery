@@ -1,0 +1,51 @@
+form label {
+    width: 160px;
+    display:inline-table;
+    margin-left: 50px;
+    padding: 5px;
+  }
+
+  form input {
+    display: flex;
+    margin: auto;
+    padding: 2px 5px;
+  }
+
+  .location{
+    margin: 70px auto 50px;
+    width: 30%;
+  }
+
+  #alert {
+    color: red;
+  }
+
+  #paymentButton{
+    display: flex;
+    margin: auto;
+    margin-bottom: 100px;
+    padding: 0.5rem 2rem;
+  }
+
+  form input:focus{
+    border: 0px;
+  }
+
+  .required:focus{
+    border: none;
+  }
+
+@media screen and (min-width: 600px) and (max-width: 1024px){
+  form label{
+    margin-left: 0px;
+  } 
+}
+@media screen and (max-width: 600px) {
+  .location{
+    width: 60%;
+  }
+  
+  form label{
+    margin-left: 0px;
+  } 
+}

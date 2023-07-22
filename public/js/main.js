@@ -58,8 +58,40 @@ function responsive(){
   }
 
 
+function reveal() {
+
+  const reveals = document.querySelectorAll(".reveal");
+  for (var i = 0; i < reveals.length; i++) {
+    const windowHeight = window.innerHeight;
+    const elementTop = reveals[i].getBoundingClientRect().top;
+    const elementBottom = reveals[0].getBoundingClientRect().bottom;
+    const elementVisible = 40;
+    const SVG = document.querySelectorAll(".SVG")[0];
+  
+    if (elementTop < windowHeight - elementVisible) {
+      if (reveals[i].className.includes("transition") && !SVG.getAttribute("data")){
+        SVG.setAttribute("data", "./images/bg_animated.svg")
+      }
+      reveals[i].classList.add("active");
+    } else {
+      if (reveals[i].className.includes("transition") && SVG.getAttribute("data")){
+        SVG.setAttribute("data", "")
+      }
+      reveals[i].classList.remove("active");
+    }
+    if (elementBottom < 0 && SVG.getAttribute("data")){
+      SVG.setAttribute("data", "")
+    }
+    else if(elementBottom > 0 && !SVG.getAttribute("data")){
+      SVG.setAttribute("data", "./images/bg_animated.svg")
+    }
+  }
+}
+
+
 window.addEventListener("DOMContentLoaded", function(){
     fitContent();
   });
 
-  window.addEventListener("resize", responsive);
+window.addEventListener("resize", responsive);
+window.addEventListener("scroll", reveal);

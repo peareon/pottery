@@ -159,30 +159,6 @@ suncream.addEventListener("mouseover", function(event){
   colection_image.style.backgroundImage = 'url("./images/suncream.jpg")'
 })
 
-const payButton = document.getElementById("paymentButton");
-payButton.addEventListener('click', ()=> {
-  let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
-  console.log(cart)
-  fetch("/payment",{
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      items: cart
-  }),
-  })
-  .then(res => {
-    if (res.ok) return res.json();
-    return res.json().then(json => Promise.reject(json))
-  }).then(({url}) => {
-    console.log(url)
-    window.location = url
-  }).catch(e =>{
-    console.error(e.error, "error");
-  })
-})
-
 function fitContent(){
   const buttons = document.getElementsByClassName("button-animated")
   const buttonsArr = [...buttons]
@@ -193,37 +169,8 @@ function fitContent(){
   }, 3000)    
 }
 
-function reveal() {
-  
-  const reveals = document.querySelectorAll(".reveal");
-  for (var i = 0; i < reveals.length; i++) {
-    const windowHeight = window.innerHeight;
-    const elementTop = reveals[i].getBoundingClientRect().top;
-    const elementBottom = reveals[0].getBoundingClientRect().bottom;
-    const elementVisible = 40;
-    const SVG = document.querySelectorAll(".SVG")[0];
-  
-    if (elementTop < windowHeight - elementVisible) {
-      if (reveals[i].className.includes("transition") && !SVG.getAttribute("data")){
-        SVG.setAttribute("data", "./images/bg_animated.svg")
-      }
-      reveals[i].classList.add("active");
-    } else {
-      if (reveals[i].className.includes("transition") && SVG.getAttribute("data")){
-        SVG.setAttribute("data", "")
-      }
-      reveals[i].classList.remove("active");
-    }
-    if (elementBottom < 0 && SVG.getAttribute("data")){
-      SVG.setAttribute("data", "")
-    }
-    else if(elementBottom > 0 && !SVG.getAttribute("data")){
-      SVG.setAttribute("data", "./images/bg_animated.svg")
-    }
-  }
-}
-
-document.addEventListener("click", e =>{
+const galeria = document.getElementById("galeria");
+galeria.addEventListener("click", e =>{
   const body = document.body;
   const menuButtons = document.getElementsByClassName("button-animated");
 
@@ -259,7 +206,31 @@ document.addEventListener("click", e =>{
 
 })
 
+const payButton = document.getElementById("paymentButton");
+payButton.addEventListener('click', ()=> {
+    fetch("/payment",{
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: cart
+    }),
+    })
+    .then(res => {
+      console.log(res)
+      if (res.ok) return res.json();
+      return res.json().then(json => Promise.reject(json))
+    }).then(({url}) => {
+      window.location = url
+    }).then(({session}) =>{
+      console.log(session)
+    }).catch(e =>{
+      console.error(e.error);
+    })
+  })
+
 window.addEventListener("DOMContentLoaded", function(){
   fitContent();
 });
-window.addEventListener("scroll", reveal);
+

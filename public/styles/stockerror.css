@@ -1,0 +1,23 @@
+.greeting{
+    font-size: 2rem;
+    text-align: center;
+}
+
+.pagesvg{
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    margin: 100px auto 0;
+    max-width: 23%;
+    max-height: 23%;
+}
+
+.successsvg{
+    fill: #3e3636;
+    animation: loader-anim-pink 4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+@keyframes loader-anim-pink {
+    0% {transform:scale(0.2) rotate(0deg) translate(220px, 0px); }
+  100% {transform:scale(0.2) rotate(1100deg) translate(300px, 0px);}
+}

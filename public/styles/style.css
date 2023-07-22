@@ -345,6 +345,7 @@ header{
 .cart-item img{
     width: 75px;
     height: 75px;
+    object-fit: cover;
 }
 
 .cart-item h4{
@@ -410,7 +411,7 @@ header{
   border-radius: .375em;
   box-shadow: none;
   box-sizing: border-box;
-  color: #363636;
+  color: #363636 !important;
   cursor: pointer;
   display: inline-flex;
   font-family: 'DM Serif Display', serif;
@@ -424,10 +425,10 @@ header{
   -webkit-user-select: none;
   touch-action: manipulation;
   white-space: nowrap;
-  display: block;
+  display: block !important;
   margin: auto;
   margin-top: auto;
-  margin-top: 30px;
+  margin-top: 30px !important;
 }
 
 .banner-btn-clear:active {
@@ -1250,7 +1251,7 @@ form{
     
     .icon-menu i{
         position: absolute;
-        top: 9px;
+        top: -2px;
         right: 6px;
         transform: scale(1.8);
     }
@@ -1275,7 +1276,6 @@ form{
 
     .div-menu-options button{
         display: none;
-        margin-top: -1.5em;
     }
 
     .div-menu-options button.icon-menu{
@@ -1311,7 +1311,7 @@ form{
 
     .div-menu-options.responsive button.icon-menu{
         right: 17px;
-        top: 58px;
+        top: 49px;
         position: absolute;
     }
 
@@ -1325,6 +1325,10 @@ form{
 
     .cart{
         padding: 0.8em;
+    }
+
+    .cart-item{
+        margin: 1.5rem 0.4rem;
     }
 
     .cart h2, .cart h3, .cart h4, .cart h5{
