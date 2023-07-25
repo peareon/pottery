@@ -3,6 +3,11 @@
     text-align: center;
 }
 
+.wrongcart{
+    font-size: 2rem;
+    text-align: center;
+}
+
 .pagesvg{
     display: flex;
     flex-direction: column;
@@ -13,11 +18,76 @@
 }
 
 .successsvg{
-    fill: #3e3636;
-    animation: loader-anim-pink 4s cubic-bezier(0.645, 0.045, 0.355, 1);
+    max-width: 85%;
+    margin-left: 2.1rem;
+    animation: loader-anim-pink 4s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+.fixsvg{
+    margin-left: 3rem;
+    max-width: 85%;
+    animation: fixsvg 4s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
 }
 
 @keyframes loader-anim-pink {
-    0% {transform:scale(0.2) rotate(0deg) translate(220px, 0px); }
-  100% {transform:scale(0.2) rotate(1100deg) translate(300px, 0px);}
+    0% {fill: #ffffff;}
+  100% {fill: #3e3636;}
+}
+
+@keyframes fixsvg {
+    0% {fill: #f17f7f;}
+  100% {fill: #3e3636;}
+}
+
+@media screen and (min-width: 600px) and (max-width: 1024px){
+    .greeting{
+        font-size: 1.7rem;
+    }
+    
+    .wrongcart{
+        font-size: 1.5rem;
+    }
+    
+    .pagesvg{
+        gap: 40px;
+        margin: 80px auto 0;
+        max-width: 33%;
+    }
+    .successsvg{
+        max-width: 70%;
+        margin: auto;
+    }
+    
+    .fixsvg{
+        max-width: 70%;
+        margin: auto;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .greeting{
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    
+    .wrongcart{
+        font-size: 1rem;
+        text-align: center;
+    }
+    
+    .pagesvg{
+        gap: 30px;
+        margin: 40px auto 0;
+        max-width: 35%;
+        max-height: 35%;
+    }  
+    .successsvg{
+        max-width: 40%;
+        margin: auto;
+    }
+    
+    .fixsvg{
+        max-width: 40%;
+        margin: auto;
+    }
 }

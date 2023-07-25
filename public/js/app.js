@@ -208,6 +208,7 @@ galeria.addEventListener("click", e =>{
 
 const payButton = document.getElementById("paymentButton");
 payButton.addEventListener('click', ()=> {
+  let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []
     fetch("/payment",{
       method: "POST",
       headers: {
@@ -218,13 +219,10 @@ payButton.addEventListener('click', ()=> {
     }),
     })
     .then(res => {
-      console.log(res)
       if (res.ok) return res.json();
       return res.json().then(json => Promise.reject(json))
     }).then(({url}) => {
       window.location = url
-    }).then(({session}) =>{
-      console.log(session)
     }).catch(e =>{
       console.error(e.error);
     })

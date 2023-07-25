@@ -6,6 +6,8 @@ const ejs = require("ejs");
 const mongoose = require("mongoose");
 const https = require("https");
 const { url } = require('inspector');
+const { resolve } = require('path');
+const { rejects } = require('assert');
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
 
@@ -37,9 +39,11 @@ const Order = mongoose.model("order", orderSchema);
 const app = express();
 
 app.set('view engine', 'ejs');
+// app.set('views', path.join(__dirname, 'views'));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"))
+
 
 
 async function getItems(){
@@ -54,15 +58,15 @@ app.get("/", function(req, res){
 })
 
 app.get("/Colba", function(req, res){
-    res.render("Colba")
+    res.render("Colba");
 })
 
 app.get("/Solstego", function(req, res){
-    res.render("Solstego")
+    res.render("Solstego");
 })
 
 app.get("/Contacto", function(req, res){
-    res.render("Contacto")
+    res.render("Contacto");
 })
 
 app.get("/Tienda", function(req, res){
@@ -74,15 +78,14 @@ app.get("/Tienda", function(req, res){
 })
 
 app.get("/stockerror", function(req, res){
-    console.log(req.headers)
     origin = JSON.stringify(req.headers['sec-fetch-site'])
-    res.render("stockerror")
-    // if (origin === "cross-site"){
-    //     res.render("stockerror")
-    // }
-    // else{
-    //     res.redirect("/")
-    // }
+    if (origin.includes("origin")){
+        res.render("stockerror");
+          
+    }
+    else{
+        res.redirect("/");
+    }
     
 })
 
@@ -90,13 +93,12 @@ app.get("/stockerror", function(req, res){
 
 app.get("/success", function(req, res){
     origin = JSON.stringify(req.headers['sec-fetch-site'])
-    res.render("success")
-    // if (origin === "none"){
-    //     res.render("success")
-    // }
-    // else{
-    //     res.redirect("/")
-    // }
+    if (origin === "none"){
+        res.render("success")
+    }
+    else{
+        res.redirect("/")
+    }
 })
 
 
@@ -193,92 +195,112 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
 
 app.use(express.json())
 
-app.post("/payment", async function(req, res){
+app.post("/payment", function(req, res){
 
-    req.body.items.forEach(element => async function() {
-        if (!await Piece.find({nombre: element.name, cantidad: {$gte: element.amount}})){
-            res.redirect("/cancel");
-            console.log("testing")
-        }
-    });
+    const cart = req.body.items;
 
-    try{
-        // let items = json.stringify(req.body.items)
-        const session = await stripe.checkout.sessions.create({
-            shipping_address_collection: {
-                allowed_countries: ['MX']
-            },
-            shipping_options: [
-                {
-                    shipping_rate_data: {
-                        type: 'fixed_amount',
-                        fixed_amount:{
-                            amount: 0,
-                            currency: 'mxn',
-                        },
-                        display_name: 'Free Shipping',
-                        delivery_estimate: {
-                            minimum: {
-                                unit: 'business_day',
-                                value: 5
+
+    const stripeProcess = async () => {
+        try{
+            console.log("a ver")
+            const session = await stripe.checkout.sessions.create({
+                shipping_address_collection: {
+                    allowed_countries: ['MX']
+                },
+                shipping_options: [
+                    {
+                        shipping_rate_data: {
+                            type: 'fixed_amount',
+                            fixed_amount:{
+                                amount: 0,
+                                currency: 'mxn',
                             },
-                            maximum: {
-                                unit: 'business_day',
-                                value: 7
-                            },
+                            display_name: 'Free Shipping',
+                            delivery_estimate: {
+                                minimum: {
+                                    unit: 'business_day',
+                                    value: 5
+                                },
+                                maximum: {
+                                    unit: 'business_day',
+                                    value: 7
+                                },
+                            }
                         }
+                    },
+                    {
+                        shipping_rate_data: {
+                            type: 'fixed_amount',
+                            fixed_amount:{
+                                amount: 50000,
+                                currency: 'mxn',
+                            },
+                            display_name: 'Next Day',
+                            delivery_estimate: {
+                                minimum: {
+                                    unit: 'business_day',
+                                    value: 1
+                                },
+                                maximum: {
+                                    unit: 'business_day',
+                                    value: 1
+                                },
+                            }
+                        }
+                    }
+
+                ],
+                payment_method_types: ['card'], //add paypal
+                mode: 'payment',
+                payment_intent_data:{
+                    metadata:{
+                        items: JSON.stringify(req.body.items)
                     }
                 },
-                {
-                    shipping_rate_data: {
-                        type: 'fixed_amount',
-                        fixed_amount:{
-                            amount: 50000,
+                line_items: req.body.items.map(item =>{
+                    return{
+                        price_data:{
                             currency: 'mxn',
+                            product_data: {
+                                name: item.name
+                            },
+                            unit_amount: Number(item.precio)*100
                         },
-                        display_name: 'Next Day',
-                        delivery_estimate: {
-                            minimum: {
-                                unit: 'business_day',
-                                value: 1
-                            },
-                            maximum: {
-                                unit: 'business_day',
-                                value: 1
-                            },
-                        }
+                        quantity: item.amount
                     }
-                }
-
-            ],
-            payment_method_types: ['card'], //add paypal
-            mode: 'payment',
-            payment_intent_data:{
-                metadata:{
-                    items: JSON.stringify(req.body.items)
-                }
-            },
-            line_items: req.body.items.map(item =>{
-                return{
-                    price_data:{
-                        currency: 'mxn',
-                        product_data: {
-                            name: item.name
-                        },
-                        unit_amount: Number(item.precio)*100
-                    },
-                    quantity: item.amount
-                }
-            }),
-            success_url: `${process.env.SERVER_URL}/success`,
-            cancel_url: `${process.env.SERVER_URL}/`
-        })
-        res.json({url: session.url})
-        
+                }),
+                success_url: `${process.env.SERVER_URL}/success`,
+                cancel_url: `${process.env.SERVER_URL}/`
+            })
+            res.json({url: session.url});
+        }
+        catch(e){
+            res.status(500).json({error: e.message});
+        }
     }
-    catch(e){
-        res.status(500).json({error: e.message});
-    }   
+
+    function recursiveCheck(cartIndex){
+        return new Promise (resolve =>{
+        let pieceOutOfStock = Piece.find({nombre: cart[cartIndex].name, cantidad: {$lte: cart[cartIndex].amount}});
+        pieceOutOfStock.then(response =>{
+            resolve(response);
+        })
+    }).then(query =>{
+        if(!query.length){
+            res.json({url: "http://localhost:3000/stockerror"});
+            return query;
+        }
+        else{
+            if(cart.length > cartIndex+1){
+                return recursiveCheck(cartIndex+1);
+            }
+            else{
+                stripeProcess();
+            }
+        }
+    })
+    }
+    recursiveCheck(0);
 })
 
 
@@ -310,6 +332,7 @@ app.post("/Contacto", function(req, res){
 
     const request = https.request(url, options, function(reponse){
         reponse.on("data", function(data){
+            console.log(data);
         })
     })
 
