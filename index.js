@@ -5,32 +5,34 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
 const https = require("https");
-const { url } = require('inspector');
-const { resolve } = require('path');
-const { rejects } = require('assert');
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
 
-mongoose.connect("mongodb://localhost:27017/ceramica");
+mongoose.connect(`mongodb+srv://AlejandroPeralta:${process.env.ATLAS_PWD}@cluster0.tpyw8ct.mongodb.net/ceramica?retryWrites=true&w=majority`);
 
-const pieceSchema = {
+const pieceSchema = new mongoose.Schema({
    nombre: String,
    cantidad: Number,
    precio: Number,
    image: String
-}
+    },
+   {timestamps: { createdAt: false, updatedAt: true }}
+   );
 
-const orderSchema = {
+const orderSchema = new mongoose.Schema({
     pieza: String,
     cantidad: Number,
-    precio: Number,
+    precio: String,
     total: String,
-    add1: String,
-    add2: String,
-    city: String,
-    state: String,
-    ZIP: String
- }
+    ciudad: String,
+    pais: String,
+    calle1: String,
+    calle2: String,
+    ZIP: String,
+    estado: String
+    },
+    {timestamps: { createdAt: true, updatedAt: false }}
+ );
 
 const Piece = mongoose.model("piece", pieceSchema);
 const Order = mongoose.model("order", orderSchema);
@@ -78,7 +80,7 @@ app.get("/Tienda", function(req, res){
 })
 
 app.get("/stockerror", function(req, res){
-    origin = JSON.stringify(req.headers['sec-fetch-site'])
+    let origin = JSON.stringify(req.headers['sec-fetch-site'])
     if (origin.includes("origin")){
         res.render("stockerror");
           
@@ -92,12 +94,12 @@ app.get("/stockerror", function(req, res){
 
 
 app.get("/success", function(req, res){
-    origin = JSON.stringify(req.headers['sec-fetch-site'])
-    if (origin === "none"){
-        res.render("success")
+    let origin = JSON.stringify(req.headers['sec-fetch-site'])
+    if (origin.includes("cross")){
+        res.render("success");
     }
     else{
-        res.redirect("/")
+        res.redirect("/");
     }
 })
 
@@ -140,12 +142,19 @@ app.post("/", function(req, res){
 })
 
 
-async function handlePaymentIntentSucceeded(data){
-    console.log(data)
-    console.log(JSON.parse(data))
-    console.log(typeof JSON.parse(data))
-    await Order.create(JSON.parse(data))
+function handlePaymentIntentSucceeded(data){
+   let items=  JSON.parse(data.metadata.items)
+   let location =  data.shipping.address
+   items.forEach(async item => {
+    console.log("start", item.name);
+    await Order.create({pieza:item.name, cantidad: item.amount, precio: item.precio, total: data.amount,
+    ciudad: location.city, pais: location.country, calle1: location.line1, calle2: location.line2,
+    ZIP: location.postal_code, estado: location.state})
 
+    let newQuantity = Number(item.stock) - Number(item.amount)
+    await Piece.updateOne({nombre: item.name}, {cantidad: newQuantity});
+    console.log("end", item.name);
+    });
 }
 
 const endpointSecret = 'whsec_022bf863d3a61390b6d6654539c533b167df79df95559516480f931636c8c220';
@@ -173,7 +182,6 @@ app.post('/webhook', express.raw({type: 'application/json'}), (request, response
   switch (event.type) {
     case 'payment_intent.succeeded':
       const paymentIntent = event.data.object;
-      console.log(paymentIntent)
       console.log(`PaymentIntent for ${paymentIntent.amount} was successful!`);
       // Then define and call a method to handle the successful payment intent.
       handlePaymentIntentSucceeded(paymentIntent);
@@ -281,7 +289,7 @@ app.post("/payment", function(req, res){
 
     function recursiveCheck(cartIndex){
         return new Promise (resolve =>{
-        let pieceOutOfStock = Piece.find({nombre: cart[cartIndex].name, cantidad: {$lte: cart[cartIndex].amount}});
+        let pieceOutOfStock = Piece.find({nombre: cart[cartIndex].name, cantidad: {$gte: cart[cartIndex].amount}});
         pieceOutOfStock.then(response =>{
             resolve(response);
         })
