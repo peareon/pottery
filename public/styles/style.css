@@ -30,16 +30,17 @@
 body{
     max-width: 100%;
     box-sizing: 0;
+    overflow-x: clip;
     padding: 0;
     margin: 0;
     background-color: rgb(236, 230, 230);
 }
 
-header{
+/* header{
     min-width: 100%;
     min-height: 100%;
     max-height: 100%;
-}
+} */
 
 .menu-container{
     position: absolute;
