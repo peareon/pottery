@@ -60,25 +60,25 @@ async function getItems(){
 
 
 app.get("/", function(req, res){
-    res.render("index");
+    res.render(__dirname + "\\views\\index");
 })
 
 app.get("/Colba", function(req, res){
-    res.render("Colba");
+    res.render(__dirname + "\\views\\Colba");
 })
 
 app.get("/Solstego", function(req, res){
-    res.render("Solstego");
+    res.render(__dirname + "\\views\\Solstego");
 })
 
 app.get("/Contacto", function(req, res){
-    res.render("Contacto");
+    res.render(__dirname + "\\views\\Contacto");
 })
 
 app.get("/Tienda", function(req, res){
 
     getItems().then(function(FoundPieces){
-        res.render("Tienda", {newListItems:FoundPieces})
+        res.render(__dirname + "\\views\\Tienda", {newListItems:FoundPieces})
     })
     
 })
@@ -86,11 +86,11 @@ app.get("/Tienda", function(req, res){
 app.get("/stockerror", function(req, res){
     let origin = JSON.stringify(req.headers['sec-fetch-site'])
     if (origin.includes("origin")){
-        res.render("stockerror");
+        res.render(__dirname + "\\views\\stockerror");
           
     }
     else{
-        res.redirect("/");
+        res.redirect(__dirname + "\\views\\index");
     }
     
 })
@@ -100,10 +100,10 @@ app.get("/stockerror", function(req, res){
 app.get("/success", function(req, res){
     let origin = JSON.stringify(req.headers['sec-fetch-site'])
     if (origin.includes("cross")){
-        res.render("success");
+        res.render(__dirname + "\\views\\success");
     }
     else{
-        res.redirect("/");
+        res.redirect(__dirname + "\\views\\index");
     }
 })
 
@@ -142,7 +142,7 @@ app.post("/", function(req, res){
     request.write(jsonData);
     request.end();
 
-    setTimeout(() => res.render("index"), 5500)  
+    setTimeout(() => res.render(__dirname + "index"), 5500)  
 })
 
 
@@ -351,7 +351,7 @@ app.post("/Contacto", function(req, res){
     request.write(jsonData);
     request.end();
 
-    setTimeout(() => res.render("index"), 5500)
+    setTimeout(() => res.render(__dirname + "index"), 5500)
     
 })
 
