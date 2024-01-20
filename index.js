@@ -45,7 +45,7 @@ const Order = mongoose.model("order", orderSchema);
 const app = express();
 
 app.set('view engine', 'ejs');
-// app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"))
@@ -355,7 +355,7 @@ app.post("/Contacto", function(req, res){
     
 })
 
-app.listen(3000, function(req, res){
+app.listen(process.env.PORT || 3000, function(req, res){
     console.log("uhu")
 })
 
