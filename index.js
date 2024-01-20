@@ -60,25 +60,25 @@ async function getItems(){
 
 
 app.get("/", function(req, res){
-    res.render(__dirname + "index");
+    res.render(__dirname + "/views/index");
 })
 
 app.get("/Colba", function(req, res){
-    res.render(__dirname + "Colba");
+    res.render(__dirname + "/views/Colba");
 })
 
 app.get("/Solstego", function(req, res){
-    res.render(__dirname + "Solstego");
+    res.render(__dirname + "/views/Solstego");
 })
 
 app.get("/Contacto", function(req, res){
-    res.render(__dirname + "Contacto");
+    res.render(__dirname + "/views/Contacto");
 })
 
 app.get("/Tienda", function(req, res){
 
     getItems().then(function(FoundPieces){
-        res.render(__dirname + "Tienda", {newListItems:FoundPieces})
+        res.render(__dirname + "/views/Tienda", {newListItems:FoundPieces})
     })
     
 })
@@ -86,11 +86,11 @@ app.get("/Tienda", function(req, res){
 app.get("/stockerror", function(req, res){
     let origin = JSON.stringify(req.headers['sec-fetch-site'])
     if (origin.includes("origin")){
-        res.render(__dirname + "stockerror");
+        res.render(__dirname + "/views/stockerror");
           
     }
     else{
-        res.redirect(__dirname + "index");
+        res.redirect(__dirname + "/views/index");
     }
     
 })
@@ -100,10 +100,10 @@ app.get("/stockerror", function(req, res){
 app.get("/success", function(req, res){
     let origin = JSON.stringify(req.headers['sec-fetch-site'])
     if (origin.includes("cross")){
-        res.render(__dirname + "success");
+        res.render(__dirname + "/views/success");
     }
     else{
-        res.redirect(__dirname + "index");
+        res.redirect(__dirname + "/views/index");
     }
 })
 
@@ -142,7 +142,7 @@ app.post("/", function(req, res){
     request.write(jsonData);
     request.end();
 
-    setTimeout(() => res.render(__dirname + "index"), 5500)  
+    setTimeout(() => res.render(__dirname + "/views/index"), 5500)  
 })
 
 
@@ -351,7 +351,7 @@ app.post("/Contacto", function(req, res){
     request.write(jsonData);
     request.end();
 
-    setTimeout(() => res.render(__dirname + "index"), 5500)
+    setTimeout(() => res.render(__dirname + "/views/index"), 5500)
     
 })
 
