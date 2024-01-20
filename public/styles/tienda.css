@@ -3,6 +3,11 @@
     text-align: center;
 }
 
+.pause{
+    text-align: center;
+    font-size: 20px;
+}
+
 .tiendacontainer{
     margin-top: 80px;
     display: flex;

@@ -10,6 +10,7 @@
 
         </div>
         <h1 class="titulo"> Tienda de cerámica</h1>
+        <div class="pause">We are currently re-stocking our products and designing new pieces</div>
         <div class="tiendaContainer">
             
             <% newListItems.forEach(function(item){ %>
@@ -22,7 +23,7 @@
                             <div class="compra">
                                 <div>
                                     <% if (item.cantidad > 0){%>
-                                        <button class="shoppingButton" id="<%= item.nombre %>1" data-nombre="<%= item.nombre %>" data-image="<%= item.image %>" data-precio="<%= item.precio %>" data-cantidad="<%= item.cantidad %>" onclick="addToCart(event)">
+                                        <button disabled class="shoppingButton" id="<%= item.nombre %>1" data-nombre="<%= item.nombre %>" data-image="<%= item.image %>" data-precio="<%= item.precio %>" data-cantidad="<%= item.cantidad %>" onclick="addToCart(event)">
                                             <script>
                                                 function addToCart(event){
                                                     let cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : []

@@ -8,7 +8,11 @@ const https = require("https");
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
 
+
 mongoose.connect(`mongodb+srv://AlejandroPeralta:${process.env.ATLAS_PWD}@cluster0.tpyw8ct.mongodb.net/ceramica?retryWrites=true&w=majority`);
+
+// Atlas
+// mongoose.connect(`mongodb+srv://AlejandroPeralta:${process.env.ATLAS_PWD}@cluster0.tpyw8ct.mongodb.net/ceramica?retryWrites=true&w=majority`);
 
 const pieceSchema = new mongoose.Schema({
    nombre: String,
