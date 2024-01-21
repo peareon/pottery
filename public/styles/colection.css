@@ -64,7 +64,7 @@ div.framed {
 }
   
   .container {
-    width: 55%;
+    width: 40%;
     margin: 0 auto;
     padding: 0 20px;
   }
@@ -202,7 +202,7 @@ div.framed {
     }
 
     .container {
-      width: 83%;
+      width: 72%;
     }
 
     .carousel__slide {
