@@ -67,7 +67,7 @@ body{
 
 .menu-container .menu-logo{
     height: 60px;
-    width: 60px;
+    width: 70px;
     margin-left: 20px;
     background-size: cover;
     word-break: break-all;
@@ -573,7 +573,7 @@ body{
 
     .menu-container .menu-logo{
         height: 65px;
-        width: 65px;
+        width: 75px;
     }
 
     .icon-menu i{
@@ -681,7 +681,7 @@ body{
 @media screen and (max-width: 600px) {
 
     .menu-container .menu-logo{
-        width: 40px;
+        width: 50px;
         height: 40px;
     }
     
