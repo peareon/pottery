@@ -9,33 +9,33 @@ const suncreamDisplay = document.getElementById("suncreamDisplay");
 
 suncream1.addEventListener("mouseover", function(){
     console.log("epa")
-  suncreamDisplay.style.backgroundImage = 'url("./images/sucr/full_top.jpg")'
+  suncreamDisplay.style.backgroundImage = 'url("./images/sucr/full_top.JPG")'
 })
 suncream2.addEventListener("mouseover", function(){
-  suncreamDisplay.style.backgroundImage = 'url("./images/sucr/white_close.jpg")'
+  suncreamDisplay.style.backgroundImage = 'url("./images/sucr/white_close.JPG")'
 })
 suncream3.addEventListener("mouseover", function(){
-    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/full.jpg")'
+    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/full.JPG")'
 })
 suncream5.addEventListener("mouseover", function(){
-    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/blue_top.jpg")'
+    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/blue_top.JPG")'
 })
 suncream6.addEventListener("mouseover", function(){
-  suncreamDisplay.style.backgroundImage = 'url("./images/sucr/full_side.jpg")'
+  suncreamDisplay.style.backgroundImage = 'url("./images/sucr/full_side.JPG")'
 })
 
 suncream1.addEventListener("click", function(){
-    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/full_top.jpg")'
+    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/full_top.JPG")'
 })
 suncream2.addEventListener("click", function(){
-    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/white_close.jpg")'
+    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/white_close.JPG")'
 })
 suncream3.addEventListener("click", function(){
-    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/full.jpg")'
+    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/full.JPG")'
 })
 suncream5.addEventListener("click", function(){
-    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/blue_top.jpg")'
+    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/blue_top.JPG")'
 })
 suncream6.addEventListener("click", function(){
-    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/full_side.jpg")'
+    suncreamDisplay.style.backgroundImage = 'url("./images/sucr/full_side.JPG")'
 })
